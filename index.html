@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>社会のしくみ活字堂</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F6F1E4;
+    --cream-deep:#EFE7D4;
+    --ink:#3A3428;
+    --ink-soft:#6B6252;
+    --mango:#E08A34;
+    --mango-deep:#A85F1D;
+    --mango-pale:#F6DFC0;
+    --line:#DCD2B8;
+    --good:#4F7A5A;
+    --good-bg:#E4EEDF;
+    --bad:#B4503B;
+    --bad-bg:#F5E1DA;
+    --ink-en:#7A6E52;
+    --shadow: 0 10px 28px rgba(58,52,40,0.10);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      radial-gradient(1200px 700px at 8% -10%, var(--mango-pale) 0%, transparent 55%),
+      radial-gradient(900px 600px at 110% 10%, #E9E0C7 0%, transparent 50%),
+      var(--cream);
+    color:var(--ink);
+    font-family:'Zen Kaku Gothic New', sans-serif;
+    min-height:100vh;
+    -webkit-font-smoothing:antialiased;
+  }
+  ruby{ruby-align:center;}
+  rt{font-size:0.55em; color:var(--ink-soft); font-weight:500; transition:opacity .12s ease;}
+  body.no-ruby rt{ display:none; }
+
+  .app{max-width:640px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;position:relative;}
+
+  /* ===== Header ===== */
+  .masthead{
+    padding:34px 22px 20px;
+    text-align:left;
+    border-bottom:1px solid var(--line);
+    position:relative;
+  }
+  .masthead::after{
+    content:"";
+    position:absolute; left:22px; bottom:-1px; width:46px; height:3px;
+    background:var(--mango);
+  }
+  .brand-row{ display:flex; align-items:center; justify-content:space-between; gap:12px; }
+  .brand-mark{
+    display:flex; align-items:baseline; gap:10px;
+  }
+  .brand-glyph{
+    font-family:'Shippori Mincho', serif;
+    font-weight:800;
+    font-size:15px;
+    color:var(--cream);
+    background:var(--mango-deep);
+    width:34px;height:34px;
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;
+    letter-spacing:0;
+  }
+  h1.title{
+    font-family:'Shippori Mincho', serif;
+    font-weight:800;
+    font-size:26px;
+    letter-spacing:0.04em;
+    margin:0;
+    color:var(--ink);
+  }
+  .subtitle{
+    margin:8px 0 0 44px;
+    font-size:13px;
+    color:var(--ink-soft);
+    letter-spacing:0.03em;
+  }
+
+  /* ---- ruby toggle ---- */
+  .ruby-toggle{
+    display:flex; align-items:center; gap:7px;
+    background:#fff; border:1.5px solid var(--line);
+    border-radius:20px; padding:6px 6px 6px 12px;
+    cursor:pointer; user-select:none; flex-shrink:0;
+    font-size:12px; color:var(--ink-soft); font-weight:700;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .ruby-toggle .switch{
+    width:34px; height:19px; border-radius:10px;
+    background:var(--cream-deep); position:relative; transition:background .15s ease;
+    flex-shrink:0;
+  }
+  .ruby-toggle .switch::after{
+    content:""; position:absolute; top:2px; left:2px;
+    width:15px; height:15px; border-radius:50%;
+    background:#fff; box-shadow:0 1px 3px rgba(0,0,0,0.25);
+    transition:transform .15s ease;
+  }
+  .ruby-toggle.on .switch{ background:var(--mango); }
+  .ruby-toggle.on .switch::after{ transform:translateX(15px); }
+  .ruby-toggle.on{ color:var(--mango-deep); }
+
+  /* ===== Screens ===== */
+  .screen{ flex:1; display:none; flex-direction:column; padding:22px; }
+  .screen.active{ display:flex; }
+
+  /* ---- Home / unit picker ---- */
+  .lede{
+    font-family:'Shippori Mincho', serif;
+    font-size:17px;
+    line-height:1.9;
+    color:var(--ink);
+    margin:4px 0 26px;
+  }
+  .unit-list{ display:flex; flex-direction:column; gap:12px; }
+  .unit-card{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:16px 18px;
+    display:flex; align-items:center; gap:14px;
+    cursor:pointer;
+    text-align:left;
+    box-shadow:var(--shadow);
+    transition:transform .15s ease, border-color .15s ease;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .unit-card:active{ transform:scale(0.98); }
+  .unit-card:hover{ border-color:var(--mango); }
+  .unit-num{
+    font-family:'Shippori Mincho', serif;
+    font-weight:700;
+    font-size:22px;
+    color:var(--mango-deep);
+    width:38px; flex-shrink:0;
+    text-align:center;
+  }
+  .unit-info{ flex:1; min-width:0; }
+  .unit-name{ font-size:15px; font-weight:700; color:var(--ink); line-height:1.5; }
+  .unit-meta{ font-size:12px; color:var(--ink-soft); margin-top:3px; }
+  .unit-arrow{ color:var(--mango); font-size:18px; flex-shrink:0; }
+  .unit-progress{
+    display:inline-block;
+    margin-top:6px;
+    font-size:11px;
+    color:var(--good);
+    font-weight:700;
+  }
+
+  .footer-note{
+    margin-top:28px;
+    padding-top:16px;
+    border-top:1px solid var(--line);
+    font-size:11.5px;
+    color:var(--ink-soft);
+    line-height:1.8;
+    text-align:center;
+  }
+
+  /* ---- Quiz screen ---- */
+  .quiz-top{
+    display:flex; align-items:center; justify-content:space-between;
+    margin-bottom:18px;
+    gap:10px;
+  }
+  .back-btn{
+    background:none;border:none;color:var(--ink-soft);
+    font-size:13px; cursor:pointer; padding:6px 0;
+    display:flex; align-items:center; gap:5px;
+    font-family:'Zen Kaku Gothic New', sans-serif;
+    flex-shrink:0;
+  }
+  .quiz-progress-label{ font-size:12px; color:var(--ink-soft); font-weight:700; letter-spacing:0.03em; flex-shrink:0; }
+  .progress-track{
+    height:5px; background:var(--cream-deep); border-radius:3px; overflow:hidden; margin-bottom:26px;
+  }
+  .progress-fill{
+    height:100%; background:linear-gradient(90deg,var(--mango-deep),var(--mango));
+    border-radius:3px; transition:width .35s ease;
+  }
+
+  .term-card{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:26px 22px;
+    box-shadow:var(--shadow);
+    margin-bottom:20px;
+  }
+  .term-eyebrow{
+    font-size:11.5px; color:var(--mango-deep); font-weight:700; letter-spacing:0.08em;
+    margin-bottom:10px;
+  }
+  .term-jp{
+    font-family:'Shippori Mincho', serif;
+    font-weight:700;
+    font-size:24px;
+    line-height:1.6;
+    color:var(--ink);
+  }
+  .term-en{
+    margin-top:6px;
+    font-size:13px;
+    color:var(--ink-soft);
+    font-style:italic;
+  }
+  .divider-line{ height:1px; background:var(--line); margin:18px 0; }
+  .question-text{
+    font-size:15.5px;
+    line-height:2.05;
+    color:var(--ink);
+  }
+
+  .choices{ display:flex; flex-direction:column; gap:10px; margin-top:4px; }
+  .choice-btn{
+    background:#fff;
+    border:1.5px solid var(--line);
+    border-radius:12px;
+    padding:14px 16px;
+    font-size:14.5px;
+    line-height:1.7;
+    text-align:left;
+    color:var(--ink);
+    cursor:pointer;
+    font-family:'Zen Kaku Gothic New', sans-serif;
+    transition:border-color .15s ease, background .15s ease;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .choice-btn:active{ transform:scale(0.99); }
+  .choice-btn.disabled{ pointer-events:none; }
+  .choice-btn.correct{ border-color:var(--good); background:var(--good-bg); color:var(--good); font-weight:700; }
+  .choice-btn.incorrect{ border-color:var(--bad); background:var(--bad-bg); color:var(--bad); font-weight:700; }
+  .choice-btn.muted{ opacity:0.45; }
+
+  .result-panel{
+    margin-top:18px;
+    border-radius:14px;
+    padding:18px 18px 20px;
+    border:1.5px solid;
+    animation:riseIn .25s ease;
+  }
+  @keyframes riseIn{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);} }
+  .result-panel.good{ border-color:var(--good); background:var(--good-bg); }
+  .result-panel.bad{ border-color:var(--bad); background:var(--bad-bg); }
+  .result-verdict{
+    font-family:'Shippori Mincho', serif;
+    font-weight:800;
+    font-size:16px;
+    margin-bottom:8px;
+  }
+  .result-verdict.good{ color:var(--good); }
+  .result-verdict.bad{ color:var(--bad); }
+  .result-rule{
+    font-size:13px;
+    font-weight:700;
+    color:var(--ink);
+    background:#fff;
+    border-radius:8px;
+    padding:8px 10px;
+    margin-bottom:10px;
+    display:inline-block;
+  }
+  .result-explanation{
+    font-size:14px;
+    line-height:1.95;
+    color:var(--ink);
+  }
+  .en-tip{
+    margin-top:12px;
+    padding:12px 14px;
+    background:#fff;
+    border:1px dashed var(--line);
+    border-radius:10px;
+    font-size:12.5px;
+    line-height:1.7;
+    color:var(--ink-en);
+  }
+  .en-tip-label{
+    font-weight:700;
+    color:var(--mango-deep);
+    font-size:10.5px;
+    letter-spacing:0.06em;
+    display:block;
+    margin-bottom:4px;
+  }
+
+  .next-btn{
+    margin-top:18px;
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:12px;
+    background:var(--mango-deep);
+    color:#fff;
+    font-size:15px;
+    font-weight:700;
+    font-family:'Zen Kaku Gothic New', sans-serif;
+    cursor:pointer;
+    letter-spacing:0.02em;
+    box-shadow:0 8px 18px rgba(168,95,29,0.28);
+  }
+  .next-btn:active{ transform:scale(0.99); }
+
+  /* ---- Unit complete screen ---- */
+  .complete-wrap{
+    flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; padding:20px;
+  }
+  .complete-badge{
+    width:84px;height:84px;border-radius:50%;
+    background:var(--mango-pale);
+    display:flex; align-items:center; justify-content:center;
+    font-size:36px;
+    margin-bottom:22px;
+    border:2px solid var(--mango);
+  }
+  .complete-title{
+    font-family:'Shippori Mincho', serif;
+    font-weight:800;
+    font-size:22px;
+    margin-bottom:10px;
+  }
+  .complete-score{
+    font-size:15px;
+    color:var(--ink-soft);
+    margin-bottom:30px;
+  }
+  .complete-score b{ color:var(--mango-deep); font-size:22px; }
+  .complete-actions{ display:flex; flex-direction:column; gap:12px; width:100%; max-width:280px; }
+  .btn-primary{
+    padding:15px; border:none; border-radius:12px;
+    background:var(--mango-deep); color:#fff; font-weight:700; font-size:14.5px;
+    cursor:pointer; font-family:'Zen Kaku Gothic New', sans-serif;
+  }
+  .btn-secondary{
+    padding:15px; border:1.5px solid var(--line); border-radius:12px;
+    background:#fff; color:var(--ink); font-weight:700; font-size:14.5px;
+    cursor:pointer; font-family:'Zen Kaku Gothic New', sans-serif;
+  }
+
+  @media (max-width:380px){
+    .term-jp{font-size:21px;}
+    h1.title{font-size:23px;}
+    .ruby-toggle{ padding:5px 5px 5px 9px; font-size:11px; }
+  }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <div class="masthead">
+    <div class="brand-row">
+      <div class="brand-mark">
+        <div class="brand-glyph">社</div>
+        <h1 class="title">社会のしくみ活字堂</h1>
+      </div>
+      <div class="ruby-toggle on" id="ruby-toggle" onclick="toggleRuby()">
+        <span>ふりがな</span>
+        <span class="switch"></span>
+      </div>
+    </div>
+    <div class="subtitle">介護保険のしくみ、認定の流れ、権利擁護、そして地域の支え合い ── 「社会のしくみ」領域の重要用語を、じっくり読んで理解する形式で学びます。</div>
+  </div>
+
+  <!-- HOME -->
+  <div class="screen active" id="screen-home">
+    <p class="lede">全問正解を急がず、解説をひとつずつ読み込むことをおすすめします。</p>
+    <div class="unit-list" id="unit-list"></div>
+    <div class="footer-note">選択肢の並び順は毎回ランダムに変わります。<br>進捗はこの端末に保存されます。</div>
+  </div>
+
+  <!-- QUIZ -->
+  <div class="screen" id="screen-quiz">
+    <div class="quiz-top">
+      <button class="back-btn" onclick="goHome()">← ユニット一覧</button>
+      <span class="quiz-progress-label" id="quiz-progress-label"></span>
+    </div>
+    <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+
+    <div class="term-card">
+      <div class="term-eyebrow" id="unit-eyebrow"></div>
+      <div class="term-jp" id="term-jp"></div>
+      <div class="term-en" id="term-en"></div>
+      <div class="divider-line"></div>
+      <div class="question-text" id="question-text"></div>
+    </div>
+
+    <div class="choices" id="choices"></div>
+
+    <div id="result-area"></div>
+  </div>
+
+  <!-- COMPLETE -->
+  <div class="screen" id="screen-complete">
+    <div class="complete-wrap">
+      <div class="complete-badge">🎓</div>
+      <div class="complete-title" id="complete-title">ユニット修了</div>
+      <div class="complete-score" id="complete-score"></div>
+      <div class="complete-actions">
+        <button class="btn-primary" id="retry-btn">もう一度このユニットを解く</button>
+        <button class="btn-secondary" onclick="goHome()">ユニット一覧にもどる</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+/* ========================= DATA ========================= */
+const questionsUnit1 = [
+  { id:"soc-01", unit:1, unitTitle:"介護保険[かいごほけん]の基本[きほん]", termRuby:"<ruby>保険者<rt>ほけんしゃ</rt></ruby>", en:"Insurer",
+    enTip:"The insurer running the system is the municipality, not the national or prefectural government.",
+    question:"介護保険[かいごほけん]を運営[うんえい]して保険料[ほけんりょう]を集[あつ]める【保険者[ほけんしゃ]】は誰[だれ]ですか？",
+    choices:[{text:"市町村[しちょうそん] および 特別区[とくべつく]",correct:true},{text:"都道府県[とどうふけん]",correct:false},{text:"国[くに]（厚生労働省[こうせいろうどうしょう]）",correct:false}],
+    pairRule:"保険者 ＝ 市町村・特別区（身近な自治体）",
+    explanation:"【保険者[ほけんしゃ] ＝ 市町村[しちょうそん]・特別区[とくべつく]】介護保険[かいごほけん]の保険者[ほけんしゃ]（運営者[うんえいしゃ]）は、一番[いちばん]身近[みぢか]な自治体[じちたい]である市町村[しちょうそん]と特別区[とくべつく]（東京[とうきょう]23区[く]）です。国[くに]や都道府県[とどうふけん]ではありません。" },
+  { id:"soc-02", unit:1, unitTitle:"介護保険[かいごほけん]の基本[きほん]", termRuby:"<ruby>第1号被保険者<rt>だいいちごうひほけんしゃ</rt></ruby>", en:"Primary Insured",
+    enTip:"Category 1 insured persons are everyone aged 65 and older.",
+    question:"介護保険[かいごほけん]の【第1号被保険者[だいいちごうひほけんしゃ]】の対象[たいしょう]となるのは何歳[なんさい]以上[いじょう]の人[ひと]ですか？",
+    choices:[{text:"65歳[さい]以上[いじょう]",correct:true},{text:"60歳[さい]以上[いじょう]",correct:false},{text:"75歳[さい]以上[いじょう]",correct:false}],
+    pairRule:"第1号被保険者 ＝ 65歳以上",
+    explanation:"【第1号被保険者[だいいちごうひほけんしゃ] ＝ 65歳[さい]以上[いじょう]】介護保険[かいごほけん]の第1号被保険者[だいいちごうひほけんしゃ]は65歳[さい]以上[いじょう]の人[ひと]です。年金[ねんきん]からの天引き[てんびき]（特別徴収[とくべつちょうしゅう]）などで保険料[ほけんりょう]を納[おさ]めます。" },
+  { id:"soc-03", unit:1, unitTitle:"介護保険[かいごほけん]の基本[きほん]", termRuby:"<ruby>第2号被保険者<rt>だいにごうひほけんしゃ</rt></ruby>", en:"Secondary Insured",
+    enTip:"Category 2 insured persons are aged 40 to 64 and enrolled in a health insurance plan.",
+    question:"介護保険[かいごほけん]の【第2号被保険者[だいにごうひほけんしゃ]】の対象[たいしょう]年齢[ねんれい]はどれですか？",
+    choices:[{text:"40歳[さい]〜64歳[さい]",correct:true},{text:"20歳[さい]〜59歳[さい]",correct:false},{text:"60歳[さい]〜64歳[さい]",correct:false}],
+    pairRule:"第2号被保険者 ＝ 40歳〜64歳（医療保険加入者）",
+    explanation:"【第2号被保険者[だいにごうひほけんしゃ] ＝ 40歳[さい]〜64歳[さい]】40歳[さい]から介護保険料[かいごほけんりょう]の支払[しはら]いが始[はじ]まり、第2号被保険者[だいにごうひほけんしゃ]になります。医療保険[いりょうほけん]と一緒[いっしょ]に保険料[ほけんりょう]を納[おさ]めます。" },
+  { id:"soc-04", unit:1, unitTitle:"介護保険[かいごほけん]の基本[きほん]", termRuby:"<ruby>受給要件<rt>じゅきゅうようけん</rt></ruby>", en:"Benefit Requirement",
+    enTip:"Category 1 insured people can receive benefits regardless of what caused their need for care.",
+    question:"【第1号被保険者[だいいちごうひほけんしゃ]】が介護保険[かいごほけん]サービスを利用[りよう]できる条件[じょうけん]（要介護状態[ようかいごじょうたい]の原因[げんいん]）はどれですか？",
+    choices:[{text:"原因[げんいん]を問[と]わない（どんな原因[げんいん]でもよい）",correct:true},{text:"加齢[かれい]に伴[ともな]う特定疾病[とくていしっぺい]に限[かぎ]る",correct:false},{text:"交通事故[こうつうじこ]や労災[ろうさい]に限[かぎ]る",correct:false}],
+    pairRule:"第1号の要件 ＝ 原因を問わない（老衰・事故・病気すべてOK）",
+    explanation:"【第1号受給要件[だいいちごうじゅきゅうようけん] ＝ 原因[げんいん]不問[ふもん]】65歳[さい]以上[いじょう]の第1号被保険者[だいいちごうひほけんしゃ]は、病気[びょうき]やケガ、老衰[ろうすい]、交通事故[こうつうじこ]など、原因[げんいん]を問[と]わず要支援[ようしえん]・要介護[ようかいご]になればサービスを使[つか]えます。" },
+  { id:"soc-05", unit:1, unitTitle:"介護保険[かいごほけん]の基本[きほん]", termRuby:"<ruby>特定疾病<rt>とくていしっぺい</rt></ruby>", en:"Specified Diseases",
+    enTip:"Category 2 insured people can only claim benefits if their condition is one of 16 age-related specified diseases.",
+    question:"【第2号被保険者[だいにごうひほけんしゃ]】が介護保険[かいごほけん]サービスを利用[りよう]するために必要[ひつよう]な条件[じょうけん]はどれですか？",
+    choices:[{text:"加齢[かれい]に伴[ともな]う16の特定疾病[とくていしっぺい]による介護[かいご]状態[じょうたい]",correct:true},{text:"交通事故[こうつうじこ]による骨折[こっせつ]やケガ",correct:false},{text:"仕事中[しごとちゅう]の労災[ろうさい]事故[じこ]",correct:false}],
+    pairRule:"第2号の要件 ＝ 16の特定疾病（加齢が原因）",
+    explanation:"【第2号要件[だいにごうようけん] ＝ 16の特定疾病[とくていしっぺい]】40歳[さい]〜64歳[さい]の第2号被保険者[だいにごうひほけんしゃ]は、初老期痴呆[しょろうきちほう]（若年性認知症[じゃくねんせいにんちしょう]）や末期[まっき]がんなど、法律[ほうりつ]で定[さだ]められた『16の特定疾病[とくていしっぺい]』が原因[げんいん]でないと使[つか]えません。交通事故[こうつうじこ]などのケガは対象外[たいしょうがい]です。" },
+  { id:"soc-06", unit:1, unitTitle:"介護保険[かいごほけん]の基本[きほん]", termRuby:"<ruby>介護給付<rt>かいごきゅうふ</rt></ruby>", en:"Long-term Care",
+    enTip:"Long-term care benefits (kaigo kyufu) are for people certified at care levels 1 through 5.",
+    question:"要介護認定[ようかいごにんてい]で【要介護[ようかいご]1〜5】と判定[はんてい]された人[ひと]が受[う]ける給付[きゅうふ]はどれですか？",
+    choices:[{text:"介護給付[かいごきゅうふ]",correct:true},{text:"予防給付[よぼうきゅうふ]",correct:false},{text:"特別給付[とくべつきゅうふ]",correct:false}],
+    pairRule:"要介護1〜5 ＝ 介護給付",
+    explanation:"【要介護[ようかいご]1〜5 ＝ 介護給付[かいごきゅうふ]】要介護[ようかいご]1〜5の人[ひと]が受[う]けるサービスは『介護給付[かいごきゅうふ]』と呼[よ]ばれます。要支援[ようしえん]1〜2の人[ひと]が受[う]ける『予防給付[よぼうきゅうふ]』と明確[めいかく]に分[わ]かれています。" },
+  { id:"soc-07", unit:1, unitTitle:"介護保険[かいごほけん]の基本[きほん]", termRuby:"<ruby>予防給付<rt>よぼうきゅうふ</rt></ruby>", en:"Preventive Care",
+    enTip:"Preventive care benefits (yobo kyufu) are for people certified at support levels 1 and 2.",
+    question:"要介護認定[ようかいごにんてい]で【要支援[ようしえん]1〜2】と判定[はんてい]された人[ひと]が受[う]ける給付[きゅうふ]はどれですか？",
+    choices:[{text:"予防給付[よぼうきゅうふ]",correct:true},{text:"介護給付[かいごきゅうふ]",correct:false},{text:"福祉給付[ふくしきゅうふ]",correct:false}],
+    pairRule:"要支援1〜2 ＝ 予防給付",
+    explanation:"【要支援[ようしえん]1〜2 ＝ 予防給付[よぼうきゅうふ]】軽度[けいど]の要支援[ようしえん]1〜2の人[ひと]には、状態[じょうたい]を悪化[あっか]させないための『予防給付[よぼうきゅうふ]』が提供[ていきょう]されます。" },
+  { id:"soc-08", unit:1, unitTitle:"介護保険[かいごほけん]の基本[きほん]", termRuby:"<ruby>基本理念<rt>きほんりねん</rt></ruby>", en:"Basic Principle",
+    enTip:"The system's core philosophy is supporting independence, not simply providing care for people.",
+    question:"介護保険法[かいごほけんほう]第1条[だいいちじょう]に規定[きてい]されている、介護保険[かいごほけん]の根幹[こんかん]となる理念[りねん]はどれですか？",
+    choices:[{text:"自立支援[じりつしえん]",correct:true},{text:"家族依存[かぞくいぞん]",correct:false},{text:"行政主導[ぎょうせいしゅどう]",correct:false}],
+    pairRule:"介護保険の理念 ＝ 自立支援（お世話ではなく本人の能力発揮）",
+    explanation:"【理念[りねん] ＝ 自立支援[じりつしえん]】介護保険[かいごほけん]は、単[たん]にお世話[せわ]をする制度[せいど]ではなく、高齢者[こうれいしゃ]が持[も]っている能力[のうりょく]に応[おう]じて『自立[じりつ]した日常[にちじょう]生活[せいかつ]』を営[いとな]めるよう支援[しえん]することを目的[もくてき]としています。" },
+  { id:"soc-09", unit:1, unitTitle:"介護保険[かいごほけん]の基本[きほん]", termRuby:"<ruby>利用者本位<rt>りようしゃほんい</rt></ruby>", en:"User-Centered",
+    enTip:"Users now choose and contract their own providers, replacing the old system where the government decided for them.",
+    question:"介護保険[かいごほけん]において、受[う]けるサービスを利用者[りようしゃ]自身[じしん]が選[えら]んで契約[けいやく]する考[かんが]え方を何[なん]と呼[よ]びますか？",
+    choices:[{text:"利用者本位[りようしゃほんい]（自己決定[じこけってい]）",correct:true},{text:"措置[そち]制度[せいど]（行政決定[ぎょうせいけってい]）",correct:false},{text:"事業所本位[じぎょうしょほんい]（施設優先[しせつゆうせん]）",correct:false}],
+    pairRule:"利用方式 ＝ 利用者本位（契約制度／措置ではない）",
+    explanation:"【利用者本位[りようしゃほんい] ＝ 契約制度[けいやくせいど]】かつての行政[ぎょうせい]が決[き]める『措置[そち]』から大転換[だいてんかん]し、介護保険[かいごほけん]では利用者[りようしゃ]が自分[じぶん]で事業所[じぎょうしょ]を選[えら]んで契約[けいやく]を結[むす]ぶ『利用者本位[りようしゃほんい]』が基本[きほん]です。" },
+  { id:"soc-10", unit:1, unitTitle:"介護保険[かいごほけん]の基本[きほん]", termRuby:"<ruby>社会連帯<rt>しゃかいれんたい</rt></ruby>", en:"Social Solidarity",
+    enTip:"Care is shared and funded by society as a whole, not left to individual families alone.",
+    question:"介護[かいご]を家族[かぞく]だけが抱[かか]え込[こ]むのではなく、国民[こくみん]全体[ぜんたい]で支[ささ]え合[あ]う考[かんが]え方を何[なん]と呼[よ]びますか？",
+    choices:[{text:"社会連帯[しゃかいれんたい]",correct:true},{text:"自己責任[じこせきにん]",correct:false},{text:"親族扶養[しんぞくふよう]",correct:false}],
+    pairRule:"介護保険の仕組み ＝ 社会連帯（みんなで支え合う）",
+    explanation:"【社会連帯[しゃかいれんたい] ＝ 国民全体[こくみんぜんたい]の支え合い】『介護[かいご]の社会化[しゃかいか]』を目差[めざ]し、国民[こくみん]みんなで保険料[ほけんりょう]を出し合って支[ささ]え合[あ]う仕組みが『社会連帯[しゃかいれんたい]』です。" },
+  { id:"soc-11", unit:1, unitTitle:"介護保険[かいごほけん]の基本[きほん]", termRuby:"<ruby>適用除外<rt>てきようじょがい</rt></ruby>", en:"Exemption",
+    enTip:"Eligibility depends on having a registered address in Japan, not on nationality.",
+    question:"介護保険[かいごほけん]の第1号被保険者[だいいちごうひほけんしゃ]・第2号被保険者[だいにごうひほけんしゃ]となる前提[ぜんてい]条件[じょうけん]として、正[ただ]しいものはどれですか？",
+    choices:[{text:"日本国内[にほんこくない]の市町村[しちょうそん]に住所[じゅうしょ]を有[ゆう]する者[もの]",correct:true},{text:"日本国籍[にほんこくせき]を有[ゆう]する者[もの]（住所[じゅうしょ]は海外[かいがい]でもよい）",correct:false},{text:"過去[かこ]に一度[いちど]も病気[びょうき]をしていない者[もの]",correct:false}],
+    pairRule:"被保険者の大前提 ＝ 国内に住所があること（国籍不問）",
+    explanation:"【被保険者要件[ひほけんしゃようけん] ＝ 国内[こくない]に住所[じゅうしょ]がある】国籍[こくせき]ではなく、日本国内[にほんこくない]の市町村[しちょうそん]に住民票[じゅうみんひょう]（住所[じゅうしょ]）があることが大前提[だいぜんてい]です。日本[にほん]に住所[じゅうしょ]がない人[ひと]は適用除外[てきようじょがい]となります。" }
+];
+
+const questionsUnit2 = [
+  { id:"soc-201", unit:2, unitTitle:"お金[かね]と認定[にんてい]の流[なが]れ", termRuby:"<ruby>財源構成<rt>ざいげんこうせい</rt></ruby>", en:"Financing Structure",
+    enTip:"Funding is split evenly: 50% from taxes and 50% from insurance premiums.",
+    question:"介護保険[かいごほけん]の全体[ぜんたい]の財源[ざいげん]（お金[かね]）の構成[こうせい]比率[ひりつ]として正[ただ]しいものはどれですか？",
+    choices:[{text:"公費[こうひ]（税金[ぜいきん]）50% ＋ 保険料[ほけんりょう]50%",correct:true},{text:"公費[こうひ]（税金[ぜいきん]）70% ＋ 保険料[ほけんりょう]30%",correct:false},{text:"公費[こうひ]（税金[ぜいきん]）100%（全額税金[ぜんがくぜいきん]）",correct:false}],
+    pairRule:"財源割合 ＝ 税金50% ＋ 保険料50%（半分ずつ）",
+    explanation:"【財源構成[ざいげんこうせい] ＝ 税金[ぜいきん]半分[はんぶん]・保険料[ほけんりょう]半分[はんぶん]】介護保険[かいごほけん]を動[うご]かす費用[ひよう]は、国[くに]や自治体[じちたい]の『税金[ぜいきん]（公費[こうひ]）』が50%、『保険料[ほけんりょう]』が50%という半分[はんぶん]ずつの構成[こうせい]になっています。" },
+  { id:"soc-202", unit:2, unitTitle:"お金[かね]と認定[にんてい]の流[なが]れ", termRuby:"<ruby>公費内訳<rt>こうひうちわけ</rt></ruby>", en:"Public Funds",
+    enTip:"Of the 50% tax portion, the national government pays half of that (25%), and prefectures and municipalities each pay 12.5%.",
+    question:"介護保険[かいごほけん]の公費[こうひ]（税金[ぜいきん]50%）の内訳[うちわけ]として正[ただ]しい比率[ひりつ]はどれですか？",
+    choices:[{text:"国[くに] 25% ／ 都道府県[とどうふけん] 12.5% ／ 市町村[しちょうそん] 12.5%",correct:true},{text:"国[くに] 50% ／ 都道府県[とどうふけん] 25% ／ 市町村[しちょうそん] 25%",correct:false},{text:"国[くに] 30% ／ 都道府県[とどうふけん] 10% ／ 市町村[しちょうそん] 10%",correct:false}],
+    pairRule:"公費の内訳 ＝ 国25%・都道府県12.5%・市町村12.5%",
+    explanation:"【公費内訳[こうひうちわけ] ＝ 国[くに]が半分[はんぶん]（25%）】税金[ぜいきん]50%の内訳[うちわけ]は、国[くに]が半分[はんぶん]の25%、都道府県[とどうふけん]が12.5%、市町村[しちょうそん]が12.5%を負担[ふたん]しています。" },
+  { id:"soc-203", unit:2, unitTitle:"お金[かね]と認定[にんてい]の流[なが]れ", termRuby:"<ruby>自己負担割合<rt>じこふたんわりあい</rt></ruby>", en:"Co-payment Rate",
+    enTip:"Users normally pay 10% of the cost out of pocket, rising to 20–30% for those with higher incomes.",
+    question:"介護保険[かいごほけん]サービスを利用[りよう]した時[とき]の、利用者[りようしゃ]の【原則[げんそく]】の自己負担[じこふたん]割合[わりあい]はどれですか？",
+    choices:[{text:"1割[わり]（所得[しょとく]に応[おう]じて2〜3割[わり]）",correct:true},{text:"3割[わり]（所得[しょとく]に応[おう]じて5割[わり]）",correct:false},{text:"無料[むりょう]（全額[ぜんがく]が保険[ほけん]から出[で]る）",correct:false}],
+    pairRule:"自己負担 ＝ 原則1割（一定以上所得は2〜3割）",
+    explanation:"【自己負担[じこふたん] ＝ 原則[げんそく]1割[わり]】サービス費用[ひよう]の自己負担[じこふたん]は原則[げんそく]1割[わり]です。ただし、一定[いってい]以上[いじょう]の収入[しゅうにゅう]がある人[ひと]は2割[わり]または3割[わり]になります。" },
+  { id:"soc-204", unit:2, unitTitle:"お金[かね]と認定[にんてい]の流[なが]れ", termRuby:"<ruby>認定申請<rt>にんていしんせい</rt></ruby>", en:"Certification Application",
+    enTip:"Applications for care-needs certification are filed at the municipal office window.",
+    question:"介護[かいご]が必要[ひつよう]になった時[とき]、要介護認定[ようかいごにんてい]の申請[しんせい]書[しょ]を提出[ていしゅつ]する【申請窓口[しんせいまどぐち]】はどこですか？",
+    choices:[{text:"市町村[しちょうそん]（特別区[とくべつく]）",correct:true},{text:"都道府県[とどうふけん]",correct:false},{text:"厚生労働省[こうせいろうどうしょう]",correct:false}],
+    pairRule:"認定の申請 ＝ 市町村（保険者へ提出）",
+    explanation:"【認定申請[にんていしんせい] ＝ 市町村[しちょうそん]へ提出[ていしゅつ]】要介護認定[ようかいごにんてい]を受[う]けるための申請書[しんせいしょ]は、保険者[ほけんしゃ]である市町村[しちょうそん]（東京[とうきょう]23区[く]は特別区[とくべつく]）の窓口[まどぐち]に提出[ていしゅつ]します。" },
+  { id:"soc-205", unit:2, unitTitle:"お金[かね]と認定[にんてい]の流[なが]れ", termRuby:"<ruby>訪問調査<rt>ほうもんちょうさ</rt></ruby>", en:"Home Assessment",
+    enTip:"The home visit survey uses a standardized 74-item checklist that is the same nationwide.",
+    question:"調査員[ちょうさいん]が自宅[じたく]を訪[おとず]れて行[おこな]う訪問調査[ほうもんちょうさ]の【基本調査[きほんちょうさ]】は何項目[なんこうもく]ですか？",
+    choices:[{text:"全国一律[ぜんこくいちりつ]の 74項目[こうもく]",correct:true},{text:"市町村[しちょうそん]ごとに異[こと]なる 30項目[こうもく]",correct:false},{text:"全国一律[ぜんこくいちりつ]の 120項目[こうもく]",correct:false}],
+    pairRule:"訪問調査 ＝ 全国一律74項目（マークシート）",
+    explanation:"【訪問調査[ほうもんちょうさ] ＝ 全国一律[ぜんこくいちりつ]74項目[こうもく]】調査員[ちょうさいん]が心身[しんしん]の状態[じょうたい]を聞[き]き取[と]る基本調査[きほんちょうさ]は、公平[こうへい]を保[たも]つため全国[ぜんこく]共通[きょうつう]の74項目[こうもく]でコンピュータ判定[はんてい]（一次判定[いちじはんてい]）されます。" },
+  { id:"soc-206", unit:2, unitTitle:"お金[かね]と認定[にんてい]の流[なが]れ", termRuby:"<ruby>主治医意見書<rt>しゅじいいけんしょ</rt></ruby>", en:"Doctor's Opinion",
+    enTip:"The municipality contacts the applicant's doctor directly to request the medical opinion statement.",
+    question:"要介護認定[ようかいごにんてい]で必要[ひつよう]な【主治医意見書[しゅじいいけんしょ]】は誰[だれ]が手配[てはい]しますか？",
+    choices:[{text:"市町村[しちょうそん]が主治医[しゅじい]に直接[ちょくせつ]依頼[いらい]して取[と]り寄[よ]せる",correct:true},{text:"申請者[しんせいしゃ]（本人[ほんにん]）が病院[びょういん]に行[い]って買[か]い取[と]る",correct:false},{text:"ケアマネジャーが自分[じぶん]の判断[はんだん]で作成[さくせい]する",correct:false}],
+    pairRule:"主治医意見書 ＝ 市町村が直接医師に依頼",
+    explanation:"【主治医意見書[しゅじいいけんしょ] ＝ 市町村[しちょうそん]が依頼[いらい]】申請者[しんせいしゃ]が取[と]りに行[い]くのではなく、申請書[しんせいしょ]を受[う]けた市町村[しちょうそん]が直接[ちょくせつ]かかりつけ医[い]（主治医[しゅじい]）に作成[さくせい]を依頼[いらい]します。" },
+  { id:"soc-207", unit:2, unitTitle:"お金[かね]と認定[にんてい]の流[なが]れ", termRuby:"<ruby>介護認定審査会<rt>かいごにんていしんさかい</rt></ruby>", en:"Certification Committee",
+    enTip:"The Care Needs Certification Board, which makes the final decision, is set up by the municipality.",
+    question:"要介護認定[ようかいごにんてい]の二次判定[にじはんてい]を行[おこな]う【介護認定審査会[かいごにんていしんさかい]】はどこに設置[せっち]されますか？",
+    choices:[{text:"市町村[しちょうそん]（特別区[とくべつく]）",correct:true},{text:"都道府県[とどうふけん]",correct:false},{text:"厚生労働省[こうせいろうどうしょう]",correct:false}],
+    pairRule:"介護認定審査会 ＝ 市町村に設置（学識経験者が合議）",
+    explanation:"【介護認定審査会[かいごにんていしんさかい] ＝ 市町村[しちょうそん]に設置[せっち]】保健[ほけん]・医療[いりょう]・福祉[ふくし]の学識経験者[がくしきけいけんしゃ]が集[あつ]まる介護認定審査会[かいごにんていしんさかい]は、市町村[しちょうそん]（または共同設置[きょうどうせっち]）に置[お]かれます。" },
+  { id:"soc-208", unit:2, unitTitle:"お金[かね]と認定[にんてい]の流[なが]れ", termRuby:"<ruby>新規認定の期間<rt>しんきにんていのきかん</rt></ruby>", en:"Initial Validity",
+    enTip:"A first-time certification is valid for 12 months in principle.",
+    question:"要介護認定[ようかいごにんてい]を【初[はじ]めて申請[しんせい]（新規[しんき]）】した時[とき]の有効期間[ゆうこうきかん]の原則[げんそく]はどれですか？",
+    choices:[{text:"原則[げんそく] 12ヶ月[げつ]（1年[ねん]）",correct:true},{text:"原則[げんそく] 24ヶ月[げつ]（2年[ねん]）",correct:false},{text:"原則[げんそく] 6ヶ月[げつ]（半年[はんとし]）",correct:false}],
+    pairRule:"新規・変更認定 ＝ 原則12ヶ月",
+    explanation:"【新規認定[しんきにんてい] ＝ 原則[げんそく]12ヶ月[げつ]】初[はじ]めて認定[にんてい]を受[う]ける時[とき]や区分変更[くぶんへんこう]の時[とき]の有効期間[ゆうこうきかん]は、原則[げんそく]『12ヶ月[げつ]』と定[さだ]められています。" },
+  { id:"soc-209", unit:2, unitTitle:"お金[かね]と認定[にんてい]の流[なが]れ", termRuby:"<ruby>更新認定の期間<rt>こうしんにんていのきかん</rt></ruby>", en:"Renewal Validity",
+    enTip:"A renewed certification is valid for 24 months in principle, and can be extended up to 48 months.",
+    question:"要介護認定[ようかいごにんてい]を【更新[こうしん]】した時[とき]の有効期間[ゆうこうきかん]の原則[げんそく]はどれですか？",
+    choices:[{text:"原則[げんそく] 24ヶ月[げつ]（最大[さいだい]48ヶ月[げつ]）",correct:true},{text:"原則[げんそく] 12ヶ月[げつ]（最大[さいだい]24ヶ月[げつ]）",correct:false},{text:"原則[げんそく] 6ヶ月[げつ]（最大[さいだい]12ヶ月[げつ]）",correct:false}],
+    pairRule:"更新認定 ＝ 原則24ヶ月（最大48ヶ月まで延長可）",
+    explanation:"【更新認定[こうしんにんてい] ＝ 原則[げんそく]24ヶ月[げつ]】すでに認定[にんてい]を受[う]けている人[ひと]が更新[こうしん]する場合[ばあい]は、負担[ふたん]を減[へ]らすため原則[げんそく]『24ヶ月[げつ]（状態[じょうたい]安定[あんてい]時[じ]は最大[さいだい]48ヶ月[げつ]）』となります。" },
+  { id:"soc-210", unit:2, unitTitle:"お金[かね]と認定[にんてい]の流[なが]れ", termRuby:"<ruby>不服申立て<rt>ふふくもうしたて</rt></ruby>", en:"Appeal",
+    enTip:"Appeals against a certification result go to the prefectural Care Insurance Review Board, not back to the municipality.",
+    question:"要介護認定[ようかいごにんてい]の結果[けっか]に納得[なっとく]できない場合[ばあい]、不服[ふふく]申立[もうした]て（審査請求[しんさせいきゅう]）をする先[さき]はどこですか？",
+    choices:[{text:"都道府県[とどうふけん]の「介護保険審査会[かいごほけんしんさかい]」",correct:true},{text:"市町村[しちょうそん]の窓口[まどぐち]",correct:false},{text:"近所[きんじょ]の警察署[けいさつしょ]",correct:false}],
+    pairRule:"不服申立て（審査請求） ＝ 都道府県（市町村ではない）",
+    explanation:"【不服申立て[ふふくもうしたて] ＝ 都道府県[とどうふけん]の介護保険審査会[かいごほけんしんさかい]】処分[しょぶん]を下[くだ]した市町村[しちょうそん]自身[じしん]ではなく、上[うえ]の機関[きかん]である『都道府県[とどうふけん]』に設置[せっち]された審査会[しんさかい]に訴[うった]え出[で]ます。" }
+];
+
+const questionsUnit3 = [
+  { id:"soc-301", unit:3, unitTitle:"権利擁護[けんりようご]・成年後見[せいねんこうけん]・虐待防止[ぎゃくたいぼうし]", termRuby:"<ruby>成年後見制度<rt>せいねんこうけんせいど</rt></ruby>", en:"Adult Guardianship",
+    enTip:"This system supports people who can no longer manage money or contracts on their own due to cognitive decline.",
+    question:"認知症[にんちしょう]などで判断[はんだん]能力[のうりょく]が不十分[ふじゅうぶん]な人[ひと]の、財産[ざいさん]管理[かんり]や契約[けいやく]を支援[しえん]する制度[せいど]はどれですか？",
+    choices:[{text:"成年後見制度[せいねんこうけんせいど]",correct:true},{text:"生活保護制度[せいかつほごせいど]",correct:false},{text:"労働基準法[ろうどうきじゅんほう]",correct:false}],
+    pairRule:"判断能力低下の契約・財産管理 ＝ 成年後見制度",
+    explanation:"【成年後見制度[せいねんこうけんせいど] ＝ 財産[ざいさん]管理[かんり]・契約[けいやく]支援[しえん]】認知症[にんちしょう]や知的障害[ちてきしょうがい]などで自分[じぶん]でお金[かね]の管理[かんり]や施設[しせつ]の契約[けいやく]ができない人[ひと]を守[まも]る制度[せいど]です。" },
+  { id:"soc-302", unit:3, unitTitle:"権利擁護[けんりようご]・成年後見[せいねんこうけん]・虐待防止[ぎゃくたいぼうし]", termRuby:"<ruby>法定後見の区分<rt>ほうていこうけんのくぶん</rt></ruby>", en:"Guardianship Types",
+    enTip:"From most to least severe: full guardianship (koken), conservatorship (hosa), then assistance (hojo).",
+    question:"【法定後見[ほうていこうけん]】の3つの区分[くぶん]を、判断[はんだん]能力[のうりょく]の低下[ていか]が「重[おも]い順[じゅん]」に正[ただ]しく並[なら]べたものはどれですか？",
+    choices:[{text:"後見[こうけん] ➔ 保佐[ほさ] ➔ 補助[ほじょ]",correct:true},{text:"補助[ほじょ] ➔ 保佐[ほさ] ➔ 後見[こうけん]",correct:false},{text:"保佐[ほさ] ➔ 後見[こうけん] ➔ 補助[ほじょ]",correct:false}],
+    pairRule:"法定後見3区分 ＝ 後見（最も重い）・保佐（中程度）・補助（軽度）",
+    explanation:"【法定後見[ほうていこうけん] ＝ 後見[こうけん]・保佐[ほさ]・補助[ほじょ]】判断[はんだん]能力[のうりょく]を常[つね]に欠[か]く一番[いちばん]重[おも]い状態[じょうたい]が『後見[こうけん]』、著[いちじる]しく不十分[ふじゅうぶん]が『保佐[ほさ]』、不十分[ふじゅうぶん]が『補助[ほじょ]』です。" },
+  { id:"soc-303", unit:3, unitTitle:"権利擁護[けんりようご]・成年後見[せいねんこうけん]・虐待防止[ぎゃくたいぼうし]", termRuby:"<ruby>後見人の業務制限<rt>こうけんにんのぎょうむせいげん</rt></ruby>", en:"Restricted Acts",
+    enTip:"Guardians handle legal and financial matters; hands-on caregiving tasks are outside their role.",
+    question:"成年後見人[せいねんこうけんにん]が法律上[ほうりつじょう]【行[おこな]うことができない（権限[けんげん]がない）】行為[こうい]はどれですか？",
+    choices:[{text:"事実行為[じじつこうい]（買物[かいもの]の料理[りょうり]やオムツ交換[こうかん]などの介護[かいご]）",correct:true},{text:"施設[しせつ]入所[にゅうしょ]のための契約[けいやく]手続き",correct:false},{text:"預貯金[よちょきん]通帳[つうちょう]の管理[かんり]や公共料金[こうきょうりょうきん]の支払[しはら]い",correct:false}],
+    pairRule:"後見人ができないこと ＝ 事実行為（介護や家事）・身分行為（結婚や遺言）",
+    explanation:"【後見人[こうけんにん]の権限[けんげん] ＝ 介護[かいご]（事実行為[じじつこうい]）はできない】後見人[こうけんにん]の仕事[しごと]は『法律行為[ほうりつこうい]（財産[ざいさん]管理[かんり]や契約[けいやく]）』です。実際[じっさい]に身の回りの介護[かいご]や掃除[そうじ]をする義務[ぎむ]はありません。" },
+  { id:"soc-304", unit:3, unitTitle:"権利擁護[けんりようご]・成年後見[せいねんこうけん]・虐待防止[ぎゃくたいぼうし]", termRuby:"<ruby>身分行為の代理<rt>みぶんこういのだいり</rt></ruby>", en:"Personal Rights",
+    enTip:"Guardians cannot act on personal matters like marriage, divorce, or writing a will — those stay with the person alone.",
+    question:"成年後見人[せいねんこうけんにん]が【代理[だいり]して行[おこな]うことができない】行為[こうい]はどれですか？",
+    choices:[{text:"結婚[けっこん]・離婚[りこん]や遺言[ゆいごん]の代筆[だいひつ]（身分行為[みぶんこうい]）",correct:true},{text:"悪徳[あくとく]商法[しょうほう]で買[か]わされた高額[こうがく]商品[しょうひん]の契約[けいやく]取消[とりけ]し",correct:false},{text:"本人[ほんにん]の預金[よきん]から医療費[いりょうひ]を支払[しはら]う行為[こうい]",correct:false}],
+    pairRule:"身分行為 ＝ 後見人でも代理不可（本人の意思のみ）",
+    explanation:"【身分行為[みぶんこうい] ＝ 代理[だいり]できない】結婚[けっこん]、養子縁組[ようしえんぐみ]、離婚[りこん]、遺言[ゆいごん]などの『身分行為[みぶんこうい]』は、本人[ほんにん]の一身専属[いっしんせんぞく]の権利[けんり]であるため、後見人[こうけんにん]であっても代理[だいり]できません。" },
+  { id:"soc-305", unit:3, unitTitle:"権利擁護[けんりようご]・成年後見[せいねんこうけん]・虐待防止[ぎゃくたいぼうし]", termRuby:"<ruby>任意後見制度<rt>にんいこうけんせいど</rt></ruby>", en:"Voluntary Guardianship",
+    enTip:"Voluntary guardianship lets a person choose their own future guardian while they are still mentally capable.",
+    question:"まだ判断[はんだん]能力[のうりょく]が正常[せいじょう]な元気[げんき]なうちに、将来[しょうらい]に備[そな]えて自分[じぶん]で後見人[こうけんにん]を決[き]めておく制度[せいど]はどれですか？",
+    choices:[{text:"任意後見[にんいこうけん]制度[せいど]（公正証書[こうせいしょうしょ]で契約[けいやく]）",correct:true},{text:"法定後見[ほうていこうけん]制度[せいど]（家庭裁判所[かていさいばんしょ]が選任[せんにん]）",correct:false},{text:"生活保護[せいかつほご]制度[せいど]（福祉事務所[ふくしじむしょ]へ申請[しんせい]）",correct:false}],
+    pairRule:"元気なうちに自分で契約 ＝ 任意後見制度",
+    explanation:"【任意後見[にんいこうけん] ＝ 元気[げんき]なうちに契約[けいやく]】認知症[にんちしょう]になる前[まえ]に、信頼[しんらい]できる人[ひと]とあらかじめ公正証書[こうせいしょうしょ]で契約[けいやく]を結[むす]んでおく制度[せいど]です。" },
+  { id:"soc-306", unit:3, unitTitle:"権利擁護[けんりようご]・成年後見[せいねんこうけん]・虐待防止[ぎゃくたいぼうし]", termRuby:"<ruby>高齢者虐待の種類<rt>こうれいしゃぎゃくたいのしゅるい</rt></ruby>", en:"Types of Abuse",
+    enTip:"The law recognizes five categories of abuse; 'personality-based abuse' is not one of them.",
+    question:"高齢者[こうれいしゃ]虐待[ぎゃくたい]防止法[ぼうしほう]に定[さだ]められている虐待[ぎゃくたい]の5類型[るいけい]に【含[ふく]まれない】ものはどれですか？",
+    choices:[{text:"性格的[せいかくてき]虐待[ぎゃくたい]",correct:true},{text:"介護[かいご]・世話[せわ]の放棄[ほうき]・放任[ほうにん]（ネグレクト）",correct:false},{text:"経済的[けいざいてき]虐待[ぎゃくたい]",correct:false}],
+    pairRule:"高齢者虐待の5類型 ＝ 身体的・心理的・性的・経済的・放棄（ネグレクト）",
+    explanation:"【虐待[ぎゃくたい]5類型[るいけい] ＝ 身体[しんたい]・心理[しんり]・性[せい]・経済[けいざい]・ネグレクト】虐待[ぎゃくたい]の定義[ていぎ]は5つです。『性格的[せいかくてき]虐待[ぎゃくたい]』という区分[くぶん]は法律上[ほうりつじょう]存在[そんざい]しません。" },
+  { id:"soc-307", unit:3, unitTitle:"権利擁護[けんりようご]・成年後見[せいねんこうけん]・虐待防止[ぎゃくたいぼうし]", termRuby:"<ruby>経済的虐待<rt>けいざいてきぎゃくたい</rt></ruby>", en:"Financial Abuse",
+    enTip:"Using someone's pension or assets without their consent counts as financial abuse.",
+    question:"親[おや]の年金[ねんきん]通帳[つうちょう]を勝手[かって]に使[つか]い込[こ]んだり、財産[ざいさん]を処分[しょぶん]したりする行為[こうい]は何虐待[なんぎゃくたい]にあたりますか？",
+    choices:[{text:"経済的[けいざいてき]虐待[ぎゃくたい]",correct:true},{text:"心理的[しんりてき]虐待[ぎゃくたい]",correct:false},{text:"身体的[しんたいてき]虐待[ぎゃくたい]",correct:false}],
+    pairRule:"財産の使い込み・年金取り上げ ＝ 経済的虐待",
+    explanation:"【経済的虐待[けいざいてきぎゃくたい] ＝ お金[かね]や財産[ざいさん]の奪取[だっしゅ]】本人[ほんにん]の合意[ごうい]なしに財産[ざいさん]や年金[ねんきん]を勝手[かって]に使[つか]ったり、必要[ひつよう]なお金[かね]を渡[わた]さなかったりする行為[こうい]です。" },
+  { id:"soc-308", unit:3, unitTitle:"権利擁護[けんりようご]・成年後見[せいねんこうけん]・虐待防止[ぎゃくたいぼうし]", termRuby:"<ruby>虐待の通報先<rt>ぎゃくたいのつうほうさき</rt></ruby>", en:"Abuse Reporting",
+    enTip:"Suspected abuse must be reported promptly to the municipality or a Community General Support Center.",
+    question:"高齢者[こうれいしゃ]への虐待[ぎゃくたい]を発見[はっけん]した時[とき]、法律上[ほうりつじょう]速[すみ]やかに通報[つうほう]しなければならない先[さき]はどこですか？",
+    choices:[{text:"市町村[しちょうそん] または 地域包括支援[ちいきほうかつしえん]センター",correct:true},{text:"都道府県[とどうふけん]警察[けいさつ]本部[ほんぶ]",correct:false},{text:"厚生労働省[こうせいろうどうしょう]の相談窓口[そうだんまどぐち]",correct:false}],
+    pairRule:"虐待発見時の通報先 ＝ 市町村・地域包括支援センター",
+    explanation:"【通報先[つうほうさき] ＝ 市町村[しちょうそん]・地域包括[ちいきほうかつ]】養護者[ようごしゃ]による虐待[ぎゃくたい]を発見[はっけん]した人[ひと]は、速[すみ]やかに身近[みぢか]な『市町村[しちょうそん]』またはその委託[いたく]窓口[まどぐち]である『地域包括支援[ちいきほうかつしえん]センター』に通報[つうほう]する義務[ぎむ]があります。" },
+  { id:"soc-309", unit:3, unitTitle:"権利擁護[けんりようご]・成年後見[せいねんこうけん]・虐待防止[ぎゃくたいぼうし]", termRuby:"<ruby>守秘義務の免責<rt>しゅひぎむのめんせき</rt></ruby>", en:"Whistleblower Protection",
+    enTip:"Reporting abuse does not break confidentiality rules — the person who reports it is legally protected.",
+    question:"介護職[かいごしょく]が虐待[ぎゃくたい]を通報[つうほう]した場合[ばあい]の【秘密保持[ひみつほじ]義務[ぎむ]】の扱[あつか]いとして正[ただ]しいものはどれですか？",
+    choices:[{text:"通報[つうほう]しても秘密保持[ひみつほじ]義務[ぎむ]違反[いはん]にはならず、保護[ほご]される",correct:true},{text:"仕事[しごと]の秘密[ひみつ]を漏[も]らしたとして処罰[しょばつ]される",correct:false},{text:"家族[かぞく]の同意[どうい]がない通報[つうほう]は違法[いほう]となる",correct:false}],
+    pairRule:"虐待通報 ＝ 守秘義務違反にならない（通報者保護）",
+    explanation:"【通報者保護[つうほうしゃほご] ＝ 守秘義務[しゅひぎむ]より優先[ゆうせん]】高齢者[こうれいしゃ]の命[いのち]や安全[あんぜん]を守[まも]るため、虐待[ぎゃくたい]の通報[つうほう]を行[おこな]った介護職[かいごしょく]は法律[ほうりつ]によって守[まも]られ、守秘義務[しゅひぎむ]違反[いはん]に問[と]われることはありません。" },
+  { id:"soc-310", unit:3, unitTitle:"権利擁護[けんりようご]・成年後見[せいねんこうけん]・虐待防止[ぎゃくたいぼうし]", termRuby:"<ruby>日常生活自立支援事業<rt>にちじょうせいかつじりつしえんじぎょう</rt></ruby>", en:"Daily Life Support",
+    enTip:"This lighter-weight support service for people with mild cognitive decline is run through the local Council of Social Welfare.",
+    question:"軽度[けいど]の認知症[にんちしょう]の人[ひと]などの通帳[つうちょう]預[あず]かりや福祉[ふくし]サービスの手続きを支援[しえん]する【日常生活自立支援事業[にちじょうせいかつじりつしえんじぎょう]】の窓口[まどぐち]はどこですか？",
+    choices:[{text:"社会福祉協議会[しゃかいふくしきょうぎかい]（社協[しゃきょう]）",correct:true},{text:"家庭裁判所[かていさいばんしょ]",correct:false},{text:"年金事務所[ねんきんじむしょ]",correct:false}],
+    pairRule:"日常生活自立支援事業 ＝ 社会福祉協議会（成年後見より手軽）",
+    explanation:"【日常生活自立支援事業[にちじょうせいかつじりつしえんじぎょう] ＝ 社会福祉協議会[しゃかいふくしきょうぎかい]】成年後見制度[せいねんこうけんせいど]を使[つか]うほど重[おも]くない人[ひと]が、日常[にちじょう]の通帳[つうちょう]預[あず]かりや料金[りょうきん]支払[しはら]いを頼[たの]める事業[じぎょう]で、窓口[まどぐち]は社協[しゃきょう]です。" }
+];
+
+const questionsUnit4 = [
+  { id:"soc-401", unit:4, unitTitle:"地域[ちいき]と関係機関[かんけいきかん]", termRuby:"<ruby>地域包括ケアシステム<rt>ちいきほうかつけあしすてむ</rt></ruby>", en:"Integrated Community Care",
+    enTip:"The system is built around a 'daily living area' reachable within about 30 minutes — roughly the size of a middle-school district.",
+    question:"地域包括ケアシステム[ちいきほうかつけあしすてむ]が想定[そうてい]している日常生活圏域[にちじょうせいかつけんいき]の目安[めやす]はどれですか？",
+    choices:[{text:"おおむね30分[ぷん]以内[いない]に駆[か]けつけられる圏域[けんいき]（中学校区[ちゅうがっこうく]）",correct:true},{text:"新幹線[しんかんせん]で2時間[じかん]以内[いない]に移動[いどう]できる圏域[けんいき]（都道府県[とどうふけん]全域[ぜんいき]）",correct:false},{text:"徒歩[とほ]5分[ふん]以内[いない]の隣近所[となりきんじょ]（町内会[ちょうないかい]の班[はん]）",correct:false}],
+    pairRule:"日常生活圏域 ＝ おおむね30分・中学校区",
+    explanation:"【日常生活圏域[にちじょうせいかつけんいき] ＝ 30分[ぷん]以内[いない]（中学校区[ちゅうがっこうく]）】高齢者[こうれいしゃ]が住[す]み慣[な]れた地域[ちいき]で暮[く]らし続[つづ]けられるよう、おおむね30分[ぷん]以内[いない]に必要なサービスが届[とど]く範囲[はんい]（中学校区[ちゅうがっこうく]）を基本[きほん]単位[たんい]としています。" },
+  { id:"soc-402", unit:4, unitTitle:"地域[ちいき]と関係機関[かんけいきかん]", termRuby:"<ruby>5つの構成要素<rt>いつつのこうせいようそ</rt></ruby>", en:"Five Core Elements",
+    enTip:"The five pillars are medical care, long-term care, prevention, housing, and daily life support.",
+    question:"地域包括ケアシステム[ちいきほうかつけあしすてむ]を構成[こうせい]する【5つの要素[ようそ]】に含[ふく]まれないものはどれですか？",
+    choices:[{text:"施設[しせつ]への強制[きょうせい]隔離[かくり]",correct:true},{text:"医療[いりょう]・介護[かいご]・予防[よぼう]",correct:false},{text:"住[す]まい・生活支援[せいかつしえん]",correct:false}],
+    pairRule:"地域包括ケア ＝ 医療・介護・予防・住まい・生活支援の5要素",
+    explanation:"【地域包括ケア5要素[ちいきほうかつけあごようそ] ＝ 医療[いりょう]・介護[かいご]・予防[よぼう]・住まい[すまい]・生活支援[せいかつしえん]】在宅[ざいたく]生活[せいかつ]を支[ささ]える5本柱[ほんばしら]です。施設[しせつ]に隔離[かくり]するのではなく、地域[ちいき]全体[ぜんたい]で支[ささ]え合[あ]います。" },
+  { id:"soc-403", unit:4, unitTitle:"地域[ちいき]と関係機関[かんけいきかん]", termRuby:"<ruby>地域包括支援センター<rt>ちいきほうかつしえんせんたー</rt></ruby>", en:"Community Support Center",
+    enTip:"Municipalities establish these centers, though they may delegate operation to another qualified organization.",
+    question:"高齢者[こうれいしゃ]の総合[そうごう]相談[そうだん]窓口[まどぐち]である【地域包括支援センター[ちいきほうかつしえんせんたー]】の設置[せっち]主体[しゅたい]はどこですか？",
+    choices:[{text:"市町村[しちょうそん]（委託[いたく]も可能[かのう]）",correct:true},{text:"都道府県[とどうふけん]",correct:false},{text:"厚生労働省[こうせいろうどうしょう]",correct:false}],
+    pairRule:"包括の設置主体 ＝ 市町村（社協や法人への委託も可）",
+    explanation:"【地域包括の設置[ちいきほうかつのせっち] ＝ 市町村[しちょうそん]】地域包括支援センター[ちいきほうかつしえんせんたー]を設置[せっち]するのは市町村[しちょうそん]です。社会福祉協議会[しゃかいふくしきょうぎかい]や社会福祉法人[しゃかいふくしほうじん]などに委託[いたく]することも認[みと]められています。" },
+  { id:"soc-404", unit:4, unitTitle:"地域[ちいき]と関係機関[かんけいきかん]", termRuby:"<ruby>三職種<rt>さんしょくしゅ</rt></ruby>", en:"Three Specialists",
+    enTip:"The three required professionals are a public health nurse, a social worker, and a senior care manager — not a doctor.",
+    question:"地域包括支援センター[ちいきほうかつしえんせんたー]に必[かなら]ず配置[はいち]される【専門職[せんもんしょく]（三職種[さんしょくしゅ]）】に含[ふく]まれない職種[しょくしゅ]はどれですか？",
+    choices:[{text:"医師[いし]",correct:true},{text:"保健師[ほけんし]（または経験[けいけん]のある看護師[かんごし]）",correct:false},{text:"主任介護支援専門員[しゅにんかいごしえんせんもんいん]（主任[しゅにん]ケアマネ）",correct:false}],
+    pairRule:"包括の三職種 ＝ 保健師・社会福祉士・主任ケアマネ",
+    explanation:"【三職種[さんしょくしゅ] ＝ 保健師[ほけんし]・社福[しゃふく]・主任[しゅにん]ケアマネ】センターには医療[いりょう]・看護[かんご]を担[にな]う保健師[ほけんし]、福祉[ふくし]相談[そうだん]を担[にな]う社会福祉士[しゃかいふくしし]、ケアマネを指導[しどう]する主任[しゅにん]ケアマネジャーが配置[はいち]されます。医師[いし]の常駐[じょうちゅう]義務[ぎむ]はありません。" },
+  { id:"soc-405", unit:4, unitTitle:"地域[ちいき]と関係機関[かんけいきかん]", termRuby:"<ruby>総合相談支援<rt>そうごうそうだんしえん</rt></ruby>", en:"General Consultation",
+    enTip:"This is the general consultation service that takes in any concern from older residents, not just care-related ones.",
+    question:"「近所[きんじょ]の一人暮[ひとりぐ]らしの高齢者[こうれいしゃ]が困[こま]っている」などの相談[そうだん]を最初[さいしょ]に受[う]け付[つ]ける、地域包括支援センター[ちいきほうかつしえんせんたー]の業務[ぎょうむ]はどれですか？",
+    choices:[{text:"総合相談支援[そうごうそうだんしえん]業務[ぎょうむ]",correct:true},{text:"施設[しせつ]入所[にゅうしょ]の強制[きょうせい]執行[しっこう]業務[ぎょうむ]",correct:false},{text:"病院[びょういん]の医療費[いりょうひ]請求[せいきゅう]業務[ぎょうむ]",correct:false}],
+    pairRule:"なんでも相談窓口 ＝ 総合相談支援業務",
+    explanation:"【総合相談[そうごうそうだん] ＝ 包括[ほうかつ]の窓口[まどぐち]】介護[かいご]だけでなく、生活[せいかつ]や健康[けんこう]のあらゆる悩み[なやみ]を幅広[はばひろ]く受[う]け止[と]めて支援[しえん]につなぐ業務[ぎょうむ]です。" },
+  { id:"soc-406", unit:4, unitTitle:"地域[ちいき]と関係機関[かんけいきかん]", termRuby:"<ruby>権利擁護業務<rt>けんりようごぎょうむ</rt></ruby>", en:"Rights Advocacy",
+    enTip:"Social workers mainly handle rights advocacy, including responding to abuse and supporting guardianship applications.",
+    question:"高齢者[こうれいしゃ]への虐待[ぎゃくたい]防止[ぼうし]や成年後見制度[せいねんこうけんせいど]の利用[りよう]支援[しえん]を担当[たんとう]する、地域包括支援センター[ちいきほうかつしえんせんたー]の主[おも]な職種[しょくしゅ]は誰[だれ]ですか？",
+    choices:[{text:"社会福祉士[しゃかいふくしし]（権利擁護[けんりようご]業務[ぎょうむ]）",correct:true},{text:"調理師[ちょうりし]",correct:false},{text:"薬剤師[やくざいし]",correct:false}],
+    pairRule:"権利擁護（虐待・成年後見） ＝ 社会福祉士",
+    explanation:"【権利擁護[けんりようご] ＝ 主[おも]に社会福祉士[しゃかいふくしし]】虐待[ぎゃくたい]の発見[はっけん]・対応[たいおう]や成年後見制度[せいねんこうけんせいど]の申立て[もうしたて]手続[てつづ]きなど、高齢者[こうれいしゃ]の人権[じんけん]を守[まも]る仕事[しごと]です。" },
+  { id:"soc-407", unit:4, unitTitle:"地域[ちいき]と関係機関[かんけいきかん]", termRuby:"<ruby>主任ケアマネ<rt>しゅにんけあまね</rt></ruby>", en:"Supervising Care Manager",
+    enTip:"Senior care managers supervise and support local care managers, especially with difficult cases.",
+    question:"地域[ちいき]のケアマネジャーの相談[そうだん]に乗[の]ったり、難[むずか]しい事例[じれい]を指導[しどう]する【包括的[ほうかつてき]・継続的[けいぞくてき]ケアマネジメント】を担当[たんとう]する職種[しょくしゅ]は誰[だれ]ですか？",
+    choices:[{text:"主任介護支援専門員[しゅにんかいごしえんせんもんいん]（主任[しゅにん]ケアマネ）",correct:true},{text:"理学療法士[りがくりょうほうし]（PT）",correct:false},{text:"ホームヘルパー（訪問介護員[ほうもんかいごいん]）",correct:false}],
+    pairRule:"ケアマネの後方支援・指導 ＝ 主任介護支援専門員",
+    explanation:"【包括的ケアマネジメント ＝ 主任[しゅにん]ケアマネ】地域[ちいき]のケアマネジャーが孤立[こりつ]しないよう、指導[しどう]やネットワーク作り[づくり]を主導[しゅどう]します。" },
+  { id:"soc-408", unit:4, unitTitle:"地域[ちいき]と関係機関[かんけいきかん]", termRuby:"<ruby>予防ケアマネジメント<rt>よぼうけあまねじめんと</rt></ruby>", en:"Preventive Care Plan",
+    enTip:"Care plans for people at support levels 1–2 are made by the Community General Support Center, not a private care office.",
+    question:"【要支援[ようしえん]1〜2】の人[ひと]の介護予防[かいごよぼう]サービス計画[けいかく]（介護予防[かいごよぼう]ケアプラン）を作成[さくせい]する機関[きかん]はどこですか？",
+    choices:[{text:"地域包括支援センター[ちいきほうかつしえんせんたー]",correct:true},{text:"病院[びょういん]の入退院[にゅうたいいん]窓口[まどぐち]",correct:false},{text:"特別養護老人ホーム[とくべつようごろうじんほーむ]",correct:false}],
+    pairRule:"要支援1〜2のケアプラン ＝ 地域包括支援センター",
+    explanation:"【介護予防ケアマネジメント ＝ 地域包括支援センター[ちいきほうかつしえんせんたー]】要介護[ようかいご]の人[ひと]は居宅介護支援事業所[きょたくかいごしえんじぎょうしょ]ですが、要支援[ようしえん]の人[ひと]のプランは地域包括支援センター[ちいきほうかつしえんせんたー]が担当[たんとう]します（委託[いたく]も可[か]）。" },
+  { id:"soc-409", unit:4, unitTitle:"地域[ちいき]と関係機関[かんけいきかん]", termRuby:"<ruby>ケアプラン作成費<rt>けあぷらんさくせいひ</rt></ruby>", en:"Care Plan Cost",
+    enTip:"Creating a care plan costs the user nothing — it is fully covered by the insurance system.",
+    question:"ケアマネジャーに介護[かいご]サービス計画[けいかく]（ケアプラン）を作[つく]ってもらう際[さい]の【利用者[りようしゃ]の自己負担[じこふたん]】はいくらですか？",
+    choices:[{text:"0円[えん]（全額[ぜんがく]が保険[ほけん]から給付[きゅうふ]される）",correct:true},{text:"1割[わり]負担[ふたん]（約[やく]1,000円[えん]〜3,000円[えん]）",correct:false},{text:"全額[ぜんがく]自己負担[じこふたん]（10割[わり]自腹[じばら]）",correct:false}],
+    pairRule:"ケアプラン作成費 ＝ 利用者負担ゼロ（全額保険給付）",
+    explanation:"【ケアプラン作成[さくせい] ＝ 利用者[りようしゃ]負担[ふたん]なし（無料[むりょう]）】適切[てきせつ]な計画[けいかく]なしにサービスを使[つか]うのを防[ふせ]ぐため、ケアプラン作成[さくせい]費用[ひよう]は全額[ぜんがく]が介護保険[かいごほけん]から出[で]ます。" },
+  { id:"soc-410", unit:4, unitTitle:"地域[ちいき]と関係機関[かんけいきかん]", termRuby:"<ruby>地域ケア会議<rt>ちいきけあかいぎ</rt></ruby>", en:"Community Care Meeting",
+    enTip:"These meetings turn lessons from individual difficult cases into broader community solutions and policy.",
+    question:"個別[こべつ]の困難[こんなん]事例[じれい]の解決[かいけつ]を積[つ]み重[かさ]ねて、地域[ちいき]の課題[かだい]発見[はっけん]や政策[せいさく]形成[けいせい]につなげる会議[かいぎ]はどれですか？",
+    choices:[{text:"地域[ちいき]ケア会議[かいぎ]",correct:true},{text:"介護認定審査会[かいごにんていしんさかい]",correct:false},{text:"株主総会[かぶぬしそうかい]",correct:false}],
+    pairRule:"個別支援から地域課題・政策形成へ ＝ 地域ケア会議",
+    explanation:"【地域[ちいき]ケア会議[かいぎ] ＝ 課題[かだい]解決[かいけつ]とネットワーク構築[こうちく]】多職種[たしょくしゅ]が協働[きょうどう]して個別[こべつ]ケースを支援[しえん]しながら、地域[ちいき]に足[た]りない社会資源[しゃかいしげん]の創出[そうしゅつ]や政策[せいさく]づくりへとつなげる会議[かいぎ]です。" }
+];
+
+const questionsUnit5 = [
+  { id:"soc-501", unit:5, unitTitle:"介護過程[かいごかてい]の基本[きほん]", termRuby:"<ruby>介護過程<rt>かいごかてい</rt></ruby>の4段階[だんかい]", en:"Four-Step Process",
+    enTip:"The four steps always run in this order: assessment, care planning, implementation, and evaluation.",
+    question:"介護過程[かいごかてい]を構成[こうせい]する４つの段階[だんかい]を、正[ただ]しい順番[じゅんばん]に並[なら]べたものはどれですか？",
+    choices:[{text:"アセスメント→計画[けいかく]の立案[りつあん]→実施[じっし]→評価[ひょうか]",correct:true},{text:"実施[じっし]→評価[ひょうか]→計画[けいかく]の立案[りつあん]→アセスメント",correct:false},{text:"計画[けいかく]の立案[りつあん]→アセスメント→評価[ひょうか]→実施[じっし]",correct:false}],
+    pairRule:"介護過程の4段階 ＝ アセスメント→計画立案→実施→評価",
+    explanation:"【介護過程[かいごかてい]の4段階[だんかい] ＝ アセスメント→計画[けいかく]立案[りつあん]→実施[じっし]→評価[ひょうか]】介護過程[かいごかてい]は、まず情報[じょうほう]を集[あつ]めて分析[ぶんせき]する『アセスメント』から始[はじ]まり、計画[けいかく]を立[た]て、実行[じっこう]し、最後[さいご]に見直[みなお]す『評価[ひょうか]』までを繰[く]り返[かえ]すサイクルです。" },
+  { id:"soc-502", unit:5, unitTitle:"介護過程[かいごかてい]の基本[きほん]", termRuby:"<ruby>アセスメント<rt>あせすめんと</rt></ruby>", en:"Assessment",
+    enTip:"Assessment means gathering information about the person's life and health, then analyzing it to identify their care needs.",
+    question:"介護過程[かいごかてい]における【アセスメント】とは何[なに]を行[おこな]う段階[だんかい]ですか？",
+    choices:[{text:"利用者[りようしゃ]の心身[しんしん]の状況[じょうきょう]や生活歴[せいかつれき]などの情報[じょうほう]を収集[しゅうしゅう]し、分析[ぶんせき]して生活課題[せいかつかだい]を明[あき]らかにする段階[だんかい]",correct:true},{text:"一度[いちど]立[た]てた計画[けいかく]をそのまま実行[じっこう]するだけの段階[だんかい]",correct:false},{text:"サービス提供[ていきょう]の対価[たいか]を計算[けいさん]し請求書[せいきゅうしょ]を作成[さくせい]する段階[だんかい]",correct:false}],
+    pairRule:"アセスメント ＝ 情報収集＋分析（生活課題の明確化）",
+    explanation:"【アセスメント ＝ 情報[じょうほう]収集[しゅうしゅう]と分析[ぶんせき]】利用者[りようしゃ]本人[ほんにん]や家族[かぞく]から心身[しんしん]の状態[じょうたい]・生活歴[せいかつれき]・希望[きぼう]などの情報[じょうほう]を集[あつ]め、そこから解決[かいけつ]すべき生活課題[せいかつかだい]（ニーズ）を明[あき]らかにする段階[だんかい]です。" },
+  { id:"soc-503", unit:5, unitTitle:"介護過程[かいごかてい]の基本[きほん]", termRuby:"<ruby>生活課題<rt>せいかつかだい</rt></ruby>", en:"Life Issue / Need",
+    enTip:"A \"life issue\" is a problem identified through assessment that care must help resolve.",
+    question:"アセスメントの結果[けっか]、利用者[りようしゃ]が「本人[ほんにん]の力[ちから]だけでは解決[かいけつ]できず、介護[かいご]によって解決[かいけつ]すべき」と明[あき]らかになった問題[もんだい]を何[なん]と呼[よ]びますか？",
+    choices:[{text:"生活課題[せいかつかだい]（ニーズ）",correct:true},{text:"個人[こじん]情報[じょうほう]",correct:false},{text:"業務[ぎょうむ]日誌[にっし]",correct:false}],
+    pairRule:"分析結果として明らかになった解決すべき問題 ＝ 生活課題（ニーズ）",
+    explanation:"【生活課題[せいかつかだい] ＝ 解決[かいけつ]すべきニーズ】アセスメントで集[あつ]めた情報[じょうほう]を分析[ぶんせき]し、利用者[りようしゃ]が望[のぞ]む生活[せいかつ]を送[おく]るために介護[かいご]で解決[かいけつ]すべきことが『生活課題[せいかつかだい]』です。" },
+  { id:"soc-504", unit:5, unitTitle:"介護過程[かいごかてい]の基本[きほん]", termRuby:"<ruby>長期目標<rt>ちょうきもくひょう</rt></ruby>", en:"Long-term Goal",
+    enTip:"The long-term goal describes the ultimate life the person hopes to achieve once their issue is resolved.",
+    question:"【長期目標[ちょうきもくひょう]】の説明[せつめい]として正[ただ]しいものはどれですか？",
+    choices:[{text:"生活課題[せいかつかだい]が解決[かいけつ]された、利用者[りようしゃ]の望[のぞ]む生活[せいかつ]の最終的[さいしゅうてき]な姿[すがた]を示[しめ]す目標[もくひょう]",correct:true},{text:"明日[あす]1日[にち]だけ達成[たっせい]すればよい目標[もくひょう]",correct:false},{text:"家族[かぞく]だけが達成[たっせい]を目指[めざ]す目標[もくひょう]",correct:false}],
+    pairRule:"長期目標 ＝ 最終的に目指す生活の姿",
+    explanation:"【長期目標[ちょうきもくひょう] ＝ 最終的[さいしゅうてき]なゴール】生活課題[せいかつかだい]が解決[かいけつ]され、利用者[りようしゃ]が望[のぞ]む生活[せいかつ]を実現[じつげん]した状態[じょうたい]を示[しめ]す、時間[じかん]をかけて目指[めざ]す目標[もくひょう]です。" },
+  { id:"soc-505", unit:5, unitTitle:"介護過程[かいごかてい]の基本[きほん]", termRuby:"<ruby>短期目標<rt>たんきもくひょう</rt></ruby>", en:"Short-term Goal",
+    enTip:"Short-term goals are the concrete, step-by-step targets that build toward the long-term goal.",
+    question:"【短期目標[たんきもくひょう]】の役割[やくわり]として正[ただ]しいものはどれですか？",
+    choices:[{text:"長期目標[ちょうきもくひょう]を達成[たっせい]するための、具体的[ぐたいてき]で段階的[だんかいてき]な小[ちい]さな目標[もくひょう]",correct:true},{text:"長期目標[ちょうきもくひょう]とはまったく関係[かんけい]のない目標[もくひょう]",correct:false},{text:"利用者[りようしゃ]本人[ほんにん]には知[し]らせない目標[もくひょう]",correct:false}],
+    pairRule:"短期目標 ＝ 長期目標達成に向けた段階的な目標",
+    explanation:"【短期目標[たんきもくひょう] ＝ 長期目標[ちょうきもくひょう]への一歩[いっぽ]】長期目標[ちょうきもくひょう]を達成[たっせい]するために、より具体的[ぐたいてき]で短[みじか]い期間[きかん]で確認[かくにん]できる小[ちい]さな目標[もくひょう]を段階的[だんかいてき]に設定[せってい]します。" },
+  { id:"soc-506", unit:5, unitTitle:"介護過程[かいごかてい]の基本[きほん]", termRuby:"<ruby>個別援助計画<rt>こべつえんじょけいかく</rt></ruby>", en:"Individual Care Plan",
+    enTip:"The individual care plan writes down the goals, specific support actions, methods, and points to watch for.",
+    question:"介護過程[かいごかてい]における【個別援助計画[こべつえんじょけいかく]】に記載[きさい]する内容[ないよう]として適切[てきせつ]なものはどれですか？",
+    choices:[{text:"目標[もくひょう]、具体的[ぐたいてき]な支援[しえん]内容[ないよう]、実施[じっし]方法[ほうほう]、留意点[りゅういてん]など",correct:true},{text:"施設[しせつ]の年間[ねんかん]収支[しゅうし]決算[けっさん]のみ",correct:false},{text:"利用者[りようしゃ]の家族[かぞく]の勤務先[きんむさき]の給与[きゅうよ]額[がく]のみ",correct:false}],
+    pairRule:"個別援助計画 ＝ 目標・支援内容・方法・留意点を明文化したもの",
+    explanation:"【個別援助計画[こべつえんじょけいかく] ＝ 具体的[ぐたいてき]な行動計画[こうどうけいかく]】長期[ちょうき]・短期[たんき]目標[もくひょう]に加[くわ]え、誰[だれ]が・いつ・何[なに]を・どのように支援[しえん]するかという具体的[ぐたいてき]な内容[ないよう]と、留意点[りゅういてん]を明文化[めいぶんか]した計画書[けいかくしょ]です。" },
+  { id:"soc-507", unit:5, unitTitle:"介護過程[かいごかてい]の基本[きほん]", termRuby:"<ruby>実施<rt>じっし</rt></ruby>（モニタリング）", en:"Implementation",
+    enTip:"During implementation, staff carry out the plan while observing and recording the person's reactions and changes.",
+    question:"介護過程[かいごかてい]の【実施[じっし]】の段階[だんかい]で行[おこな]うべきこととして正[ただ]しいものはどれですか？",
+    choices:[{text:"計画[けいかく]に沿[そ]って支援[しえん]を行[おこな]い、利用者[りようしゃ]の反応[はんのう]や状態[じょうたい]の変化[へんか]を観察[かんさつ]・記録[きろく]する",correct:true},{text:"計画[けいかく]をいったん白紙[はくし]に戻[もど]し、その場[ば]の思[おも]いつきだけで対応[たいおう]する",correct:false},{text:"評価[ひょうか]が終[お]わるまで一切[いっさい]の記録[きろく]をとらない",correct:false}],
+    pairRule:"実施 ＝ 計画の遂行＋反応の観察・記録（モニタリング）",
+    explanation:"【実施[じっし] ＝ 計画[けいかく]の遂行[すいこう]とモニタリング】立[た]てた計画[けいかく]に沿[そ]って実際[じっさい]に支援[しえん]を行[おこな]いながら、利用者[りようしゃ]の反応[はんのう]や状態[じょうたい]の変化[へんか]を観察[かんさつ]し記録[きろく]することが欠[か]かせません。" },
+  { id:"soc-508", unit:5, unitTitle:"介護過程[かいごかてい]の基本[きほん]", termRuby:"<ruby>評価<rt>ひょうか</rt></ruby>", en:"Evaluation",
+    enTip:"Evaluation checks how far the goals were met and decides whether the plan should continue or change.",
+    question:"介護過程[かいごかてい]における【評価[ひょうか]】の段階[だんかい]で行[おこな]うことはどれですか？",
+    choices:[{text:"目標[もくひょう]がどの程度[ていど]達成[たっせい]できたかを確認[かくにん]し、計画[けいかく]の継続[けいぞく]や見直[みなお]しを検討[けんとう]する",correct:true},{text:"最初[さいしょ]のアセスメントの内容[ないよう]をすべて破棄[はき]する",correct:false},{text:"利用者[りようしゃ]に一切[いっさい]知[し]らせずに担当者[たんとうしゃ]だけで完結[かんけつ]させる",correct:false}],
+    pairRule:"評価 ＝ 目標達成度の確認と計画の見直し",
+    explanation:"【評価[ひょうか] ＝ 目標[もくひょう]達成度[たっせいど]の確認[かくにん]】設定[せってい]した目標[もくひょう]がどの程度[ていど]達成[たっせい]できたかを振[ふ]り返[かえ]り、計画[けいかく]をこのまま続[つづ]けるか、見直[みなお]すかを検討[けんとう]する段階[だんかい]です。" },
+  { id:"soc-509", unit:5, unitTitle:"介護過程[かいごかてい]の基本[きほん]", termRuby:"<ruby>ICF<rt>あいしーえふ</rt></ruby>（国際[こくさい]生活[せいかつ]機能[きのう]分類[ぶんるい]）", en:"ICF Framework",
+    enTip:"ICF looks at a person's whole life — body functions, activities, participation, and environment — not just a diagnosis.",
+    question:"介護過程[かいごかてい]のアセスメントで活用[かつよう]される【ICF】が示[しめ]す視点[してん]として正[ただ]しいものはどれですか？",
+    choices:[{text:"心身[しんしん]機能[きのう]・身体[しんたい]構造[こうぞう]、活動[かつどう]、参加[さんか]、環境[かんきょう]因子[いんし]など生活[せいかつ]全体[ぜんたい]を多面的[ためんてき]に捉[とら]える視点[してん]",correct:true},{text:"病名[びょうめい]だけを分類[ぶんるい]するための一覧表[いちらんひょう]",correct:false},{text:"利用[りよう]料金[りょうきん]だけを計算[けいさん]するための表[ひょう]",correct:false}],
+    pairRule:"ICF ＝ 心身機能・活動・参加・環境因子など生活全体をとらえる視点",
+    explanation:"【ICF ＝ 生活[せいかつ]全体[ぜんたい]をとらえる枠組[わくぐ]み】病気[びょうき]や障害[しょうがい]だけでなく、『できる活動[かつどう]』『社会[しゃかい]への参加[さんか]』『環境[かんきょう]因子[いんし]』なども含[ふく]めて、利用者[りようしゃ]の生活[せいかつ]全体[ぜんたい]を多面的[ためんてき]に理解[りかい]するための視点[してん]です。" },
+  { id:"soc-510", unit:5, unitTitle:"介護過程[かいごかてい]の基本[きほん]", termRuby:"<ruby>客観的情報<rt>きゃっかんてきじょうほう</rt></ruby>と<ruby>主観的情報<rt>しゅかんてきじょうほう</rt></ruby>", en:"Objective vs Subjective Info",
+    enTip:"What the person says they feel — like \"it hurts\" — counts as subjective information, distinct from measurable, observed facts.",
+    question:"アセスメントで集[あつ]める情報[じょうほう]のうち、利用者[りようしゃ]本人[ほんにん]の「痛[いた]い」「つらい」といった訴[うった]えはどちらに分類[ぶんるい]されますか？",
+    choices:[{text:"主観的[しゅかんてき]情報[じょうほう]",correct:true},{text:"客観的[きゃっかんてき]情報[じょうほう]",correct:false},{text:"統計[とうけい]情報[じょうほう]",correct:false}],
+    pairRule:"本人の訴え・感じ方 ＝ 主観的情報／数値や観察結果 ＝ 客観的情報",
+    explanation:"【主観的情報[しゅかんてきじょうほう] ＝ 本人[ほんにん]の訴[うった]え】「痛[いた]い」「つらい」など本人[ほんにん]の感[かん]じ方[かた]は主観的[しゅかんてき]情報[じょうほう]です。血圧[けつあつ]の数値[すうち]や観察[かんさつ]でわかる事実[じじつ]は客観的[きゃっかんてき]情報[じょうほう]として区別[くべつ]します。" },
+  { id:"soc-511", unit:5, unitTitle:"介護過程[かいごかてい]の基本[きほん]", termRuby:"<ruby>チームアプローチ<rt>ちーむあぷろーち</rt></ruby>", en:"Team Approach",
+    enTip:"A team approach means sharing information across professions and supporting the person with one consistent policy.",
+    question:"介護過程[かいごかてい]を展開[てんかい]するうえで重要[じゅうよう]な【チームアプローチ】の考[かんが]え方[かた]として正[ただ]しいものはどれですか？",
+    choices:[{text:"介護職[かいごしょく]だけでなく多職種[たしょくしゅ]で情報[じょうほう]を共有[きょうゆう]し、統一[とういつ]した方針[ほうしん]で支援[しえん]すること",correct:true},{text:"担当[たんとう]の介護職員[かいごしょくいん]だけの判断[はんだん]ですべてを進[すす]めること",correct:false},{text:"他職種[たしょくしゅ]とは情報[じょうほう]を共有[きょうゆう]せず、それぞれ別々[べつべつ]に対応[たいおう]すること",correct:false}],
+    pairRule:"チームアプローチ ＝ 多職種で情報共有し統一した方針で支援",
+    explanation:"【チームアプローチ ＝ 多職種[たしょくしゅ]連携[れんけい]】介護職[かいごしょく]・看護師[かんごし]・ケアマネジャーなど多職種[たしょくしゅ]が情報[じょうほう]を共有[きょうゆう]し、統一[とういつ]した方針[ほうしん]のもとで一貫[いっかん]した支援[しえん]を行[おこな]うことが介護過程[かいごかてい]を支[ささ]えます。" }
+];
+
+const questionsUnit6 = [
+  { id:"soc-601", unit:6, unitTitle:"外国人[がいこくじん]介護[かいご]人材[じんざい]受入[うけい]れ制度[せいど]", termRuby:"4つの受入[うけい]れルート", en:"Four Entry Routes",
+    enTip:"The four main routes are EPA, Technical Intern Training, Specified Skilled Worker, and the student/graduate route — a tourist visa is not one of them.",
+    question:"日本[にほん]で外国人[がいこくじん]が介護職[かいごしょく]として働[はたら]くための、代表的[だいひょうてき]な4つの受入[うけい]れルートに【含[ふく]まれない】ものはどれですか？",
+    choices:[{text:"観光[かんこう]ビザによる短期[たんき]滞在[たいざい]",correct:true},{text:"EPA（経済連携協定[けいざいれんけいきょうてい]）",correct:false},{text:"技能実習[ぎのうじっしゅう]",correct:false}],
+    pairRule:"4つの代表的ルート ＝ EPA・技能実習・特定技能・留学（介護福祉士養成施設等）",
+    explanation:"【受入[うけい]れルート ＝ EPA・技能実習[ぎのうじっしゅう]・特定技能[とくていぎのう]・留学[りゅうがく]】外国人[がいこくじん]が介護職[かいごしょく]として就労[しゅうろう]する代表的[だいひょうてき]なルートは、EPA・技能実習[ぎのうじっしゅう]・特定技能[とくていぎのう]・介護福祉士[かいごふくしし]養成[ようせい]施設[しせつ]卒業[そつぎょう]（留学[りゅうがく]）の4つです。観光[かんこう]ビザでは就労[しゅうろう]できません。" },
+  { id:"soc-602", unit:6, unitTitle:"外国人[がいこくじん]介護[かいご]人材[じんざい]受入[うけい]れ制度[せいど]", termRuby:"<ruby>EPA<rt>いーぴーえー</rt></ruby>（経済連携協定[けいざいれんけいきょうてい]）", en:"EPA Framework",
+    enTip:"The EPA framework for care worker candidates currently covers three countries: Indonesia, the Philippines, and Vietnam.",
+    question:"EPAに基[もと]づく介護福祉士[かいごふくしし]候補者[こうほしゃ]の受入[うけい]れ対象[たいしょう]となっている3か国[こく]はどれですか？",
+    choices:[{text:"インドネシア・フィリピン・ベトナム",correct:true},{text:"中国[ちゅうごく]・韓国[かんこく]・タイ",correct:false},{text:"ネパール・ミャンマー・カンボジア",correct:false}],
+    pairRule:"EPA対象国 ＝ インドネシア・フィリピン・ベトナムの3か国",
+    explanation:"【EPA対象国[たいしょうこく] ＝ インドネシア・フィリピン・ベトナム】経済連携協定[けいざいれんけいきょうてい]（EPA）に基[もと]づく介護福祉士[かいごふくしし]候補者[こうほしゃ]の受入[うけい]れは、インドネシア・フィリピン・ベトナムの3か国[こく]との協定[きょうてい]に基[もと]づいて行[おこな]われています。" },
+  { id:"soc-603", unit:6, unitTitle:"外国人[がいこくじん]介護[かいご]人材[じんざい]受入[うけい]れ制度[せいど]", termRuby:"EPA候補者[こうほしゃ]の在留[ざいりゅう]期間[きかん]", en:"EPA Candidate Stay",
+    enTip:"EPA candidates can work and train in Japan for four years in principle while preparing for the national exam.",
+    question:"EPA介護福祉士[かいごふくしし]候補者[こうほしゃ]が来日後[らいにちご]、国家試験[こっかしけん]合格[ごうかく]を目指[めざ]して就労[しゅうろう]・研修[けんしゅう]できる在留[ざいりゅう]期間[きかん]の原則[げんそく]はどれですか？",
+    choices:[{text:"原則[げんそく] 4年間[ねんかん]",correct:true},{text:"原則[げんそく] 10年間[ねんかん]",correct:false},{text:"期限[きげん]なし（無期限[むきげん]）",correct:false}],
+    pairRule:"EPA候補者の滞在 ＝ 原則4年間（国家試験合格で無期限就労へ）",
+    explanation:"【EPA候補者[こうほしゃ]の在留[ざいりゅう] ＝ 原則[げんそく]4年間[ねんかん]】候補者[こうほしゃ]は日本[にほん]の介護[かいご]施設[しせつ]で働[はたら]きながら、原則[げんそく]4年間[ねんかん]の間[あいだ]に介護福祉士[かいごふくしし]国家試験[こっかしけん]の合格[ごうかく]を目指[めざ]して研修[けんしゅう]します。" },
+  { id:"soc-604", unit:6, unitTitle:"外国人[がいこくじん]介護[かいご]人材[じんざい]受入[うけい]れ制度[せいど]", termRuby:"EPA介護福祉士[かいごふくしし]", en:"EPA Certified Worker",
+    enTip:"Once a candidate passes the national exam, they can keep renewing their status and work in Japan without a limit.",
+    question:"EPA介護福祉士[かいごふくしし]候補者[こうほしゃ]が在留[ざいりゅう]期間中[きかんちゅう]に介護福祉士[かいごふくしし]国家試験[こっかしけん]に合格[ごうかく]した場合[ばあい]、その後[ご]の扱[あつか]いとして正[ただ]しいものはどれですか？",
+    choices:[{text:"在留[ざいりゅう]期間[きかん]の更新[こうしん]制限[せいげん]がなくなり、継続[けいぞく]して就労[しゅうろう]できる",correct:true},{text:"資格[しかく]取得[しゅとく]と同時[どうじ]に帰国[きこく]しなければならない",correct:false},{text:"合格[ごうかく]しても在留[ざいりゅう]資格[しかく]は一切[いっさい]変[か]わらない",correct:false}],
+    pairRule:"国家試験合格 ＝ 在留期間の更新制限なしで就労継続可",
+    explanation:"【合格後[ごうかくご] ＝ 更新[こうしん]制限[せいげん]なしで継続[けいぞく]就労[しゅうろう]】国家試験[こっかしけん]に合格[ごうかく]すると『EPA介護福祉士[かいごふくしし]』として、在留[ざいりゅう]期間[きかん]の更新[こうしん]回数[かいすう]に制限[せいげん]なく日本[にほん]で働[はたら]き続[つづ]けることができます。" },
+  { id:"soc-605", unit:6, unitTitle:"外国人[がいこくじん]介護[かいご]人材[じんざい]受入[うけい]れ制度[せいど]", termRuby:"技能実習[ぎのうじっしゅう]制度[せいど]の目的[もくてき]", en:"Technical Intern Training Purpose",
+    enTip:"On paper, technical intern training exists to transfer skills to developing countries — not simply to fill Japan's labor shortage.",
+    question:"【技能実習[ぎのうじっしゅう]制度[せいど]】が制度上[せいどじょう]掲[かか]げてきた本来[ほんらい]の目的[もくてき]はどれですか？",
+    choices:[{text:"開発途上国[かいはつとじょうこく]への技能[ぎのう]移転[いてん]による国際[こくさい]貢献[こうけん]",correct:true},{text:"日本[にほん]国内[こくない]の人手不足[ひとでぶそく]を補[おぎな]う労働力[ろうどうりょく]の確保[かくほ]",correct:false},{text:"永住権[えいじゅうけん]の付与[ふよ]",correct:false}],
+    pairRule:"技能実習制度の建前 ＝ 国際貢献（技能移転）。労働力確保が目的の特定技能とは異なる",
+    explanation:"【技能実習[ぎのうじっしゅう]の建前[たてまえ] ＝ 国際[こくさい]貢献[こうけん]】技能実習[ぎのうじっしゅう]制度[せいど]は、開発途上国[かいはつとじょうこく]の人[ひと]に日本[にほん]の技能[ぎのう]を伝[つた]えて母国[ぼこく]の発展[はってん]に役立[やくだ]ててもらう『国際[こくさい]貢献[こうけん]』が本来[ほんらい]の目的[もくてき]とされてきました。" },
+  { id:"soc-606", unit:6, unitTitle:"外国人[がいこくじん]介護[かいご]人材[じんざい]受入[うけい]れ制度[せいど]", termRuby:"特定技能[とくていぎのう]1号[ごう]（介護[かいご]）", en:"Specified Skilled Worker (1)",
+    enTip:"Specified Skilled Worker (1) requires a reasonable level of knowledge or experience, confirmed through a skills test.",
+    question:"【特定技能[とくていぎのう]1号[ごう]】の在留[ざいりゅう]資格[しかく]で外国人[がいこくじん]が介護[かいご]分野[ぶんや]に従事[じゅうじ]するために必要[ひつよう]な水準[すいじゅん]はどれですか？",
+    choices:[{text:"相当[そうとう]程度[ていど]の知識[ちしき]または経験[けいけん]を要[よう]する技能[ぎのう]（技能[ぎのう]評価[ひょうか]試験[しけん]等[とう]で確認[かくにん]）",correct:true},{text:"熟練[じゅくれん]した技能[ぎのう]（各[かく]分野[ぶんや]の実技[じつぎ]試験[しけん]で確認[かくにん]）",correct:false},{text:"技能[ぎのう]は一切[いっさい]問[と]われない",correct:false}],
+    pairRule:"特定技能1号 ＝ 相当程度の知識・経験（技能評価試験＋日本語試験等）",
+    explanation:"【特定技能[とくていぎのう]1号[ごう] ＝ 相当[そうとう]程度[ていど]の知識[ちしき]・経験[けいけん]】介護[かいご]分野[ぶんや]の『介護[かいご]技能[ぎのう]評価[ひょうか]試験[しけん]』と日本語[にほんご]試験[しけん]などで一定[いってい]の水準[すいじゅん]が確認[かくにん]された人[ひと]が対象[たいしょう]です。" },
+  { id:"soc-607", unit:6, unitTitle:"外国人[がいこくじん]介護[かいご]人材[じんざい]受入[うけい]れ制度[せいど]", termRuby:"特定技能[とくていぎのう]2号[ごう]と介護[かいご]", en:"Specified Skilled Worker (2) Exclusion",
+    enTip:"Care work isn't part of Specified Skilled Worker (2) because a separate, more advanced \"Kaigo\" visa status already exists for qualified care workers.",
+    question:"介護[かいご]分野[ぶんや]が【特定技能[とくていぎのう]2号[ごう]】の対象[たいしょう]になっていない理由[りゆう]として正[ただ]しいものはどれですか？",
+    choices:[{text:"すでに専門的[せんもんてき]・技術的[ぎじゅつてき]分野[ぶんや]の在留[ざいりゅう]資格[しかく]「介護[かいご]」が別[べつ]に存在[そんざい]するため",correct:true},{text:"介護[かいご]分野[ぶんや]の人手不足[ひとでぶそく]が解消[かいしょう]されたため",correct:false},{text:"介護福祉士[かいごふくしし]国家試験[こっかしけん]が廃止[はいし]されたため",correct:false}],
+    pairRule:"介護は特定技能2号の対象外 ＝ 在留資格「介護」が既にあるため",
+    explanation:"【特定技能[とくていぎのう]2号[ごう]対象外[たいしょうがい]の理由[りゆう]】介護[かいご]分野[ぶんや]には、介護福祉士[かいごふくしし]資格[しかく]取得者[しゅとくしゃ]向[む]けの、より上位[じょうい]の在留[ざいりゅう]資格[しかく]「介護[かいご]」がすでに存在[そんざい]するため、特定技能[とくていぎのう]2号[ごう]の対象[たいしょう]分野[ぶんや]には含[ふく]まれていません。" },
+  { id:"soc-608", unit:6, unitTitle:"外国人[がいこくじん]介護[かいご]人材[じんざい]受入[うけい]れ制度[せいど]", termRuby:"在留[ざいりゅう]資格[しかく]「介護[かいご]」", en:"\"Kaigo\" Visa Status",
+    enTip:"The dedicated \"Kaigo\" visa status is granted to people who become licensed care workers, for example through a training school.",
+    question:"専門的[せんもんてき]・技術的[ぎじゅつてき]分野[ぶんや]の在留[ざいりゅう]資格[しかく]【介護[かいご]】を取得[しゅとく]する主[おも]なルートとして正[ただ]しいものはどれですか？",
+    choices:[{text:"介護福祉士[かいごふくしし]養成[ようせい]施設[しせつ]を卒業[そつぎょう]するなどして介護福祉士[かいごふくしし]国家[こっか]資格[しかく]を取得[しゅとく]する",correct:true},{text:"母国[ぼこく]で3日間[かかん]の講習[こうしゅう]を受[う]ける",correct:false},{text:"日本語[にほんご]検定[けんてい]に合格[ごうかく]するだけでよい",correct:false}],
+    pairRule:"在留資格「介護」 ＝ 介護福祉士資格の取得が前提",
+    explanation:"【在留[ざいりゅう]資格[しかく]「介護[かいご]」 ＝ 介護福祉士[かいごふくしし]資格[しかく]が前提[ぜんてい]】介護福祉士[かいごふくしし]養成[ようせい]施設[しせつ]の卒業[そつぎょう]や実務[じつむ]経験[けいけん]ルートなどを経[へ]て介護福祉士[かいごふくしし]国家[こっか]資格[しかく]を取得[しゅとく]した人[ひと]に与[あた]えられる在留[ざいりゅう]資格[しかく]です。" },
+  { id:"soc-609", unit:6, unitTitle:"外国人[がいこくじん]介護[かいご]人材[じんざい]受入[うけい]れ制度[せいど]", termRuby:"留学生[りゅうがくせい]ルート", en:"Student Route",
+    enTip:"International students who graduate from a care-worker training school and pass the national exam can then work under the \"Kaigo\" visa status.",
+    question:"外国人[がいこくじん]が日本[にほん]の【介護福祉士[かいごふくしし]養成[ようせい]施設[しせつ]】に留学生[りゅうがくせい]として入学[にゅうがく]し卒業[そつぎょう]した場合[ばあい]の扱[あつか]いとして、現在[げんざい]の制度[せいど]で正[ただ]しいものはどれですか？",
+    choices:[{text:"介護福祉士[かいごふくしし]国家試験[こっかしけん]に合格[ごうかく]すれば、在留[ざいりゅう]資格[しかく]「介護[かいご]」で就労[しゅうろう]できる",correct:true},{text:"卒業[そつぎょう]しただけで自動的[じどうてき]に永住権[えいじゅうけん]が付与[ふよ]される",correct:false},{text:"卒業後[そつぎょうご]は必[かなら]ず母国[ぼこく]に帰国[きこく]しなければならない",correct:false}],
+    pairRule:"留学ルート ＝ 養成施設卒業→国家試験合格→在留資格「介護」で就労",
+    explanation:"【留学[りゅうがく]ルート ＝ 養成[ようせい]施設[しせつ]卒業[そつぎょう]から就労[しゅうろう]へ】介護福祉士[かいごふくしし]養成[ようせい]施設[しせつ]を卒業[そつぎょう]し介護福祉士[かいごふくしし]国家試験[こっかしけん]に合格[ごうかく]すると、在留[ざいりゅう]資格[しかく]を「介護[かいご]」に変更[へんこう]して日本[にほん]で就労[しゅうろう]を続[つづ]けられます。" },
+  { id:"soc-610", unit:6, unitTitle:"外国人[がいこくじん]介護[かいご]人材[じんざい]受入[うけい]れ制度[せいど]", termRuby:"育成就労[いくせいしゅうろう]制度[せいど]", en:"Employment for Skill Development System",
+    enTip:"A new system called \"Ikusei Shuro\" (Employment for Skill Development) is set to replace technical intern training from April 2027.",
+    question:"2027年[ねん]4月[がつ]に施行[しこう]が予定[よてい]されている、技能実習[ぎのうじっしゅう]制度[せいど]に代[か]わる新[あたら]しい制度[せいど]はどれですか？",
+    choices:[{text:"育成就労[いくせいしゅうろう]制度[せいど]",correct:true},{text:"特定[とくてい]活動[かつどう]制度[せいど]",correct:false},{text:"高度[こうど]専門職[せんもんしょく]制度[せいど]",correct:false}],
+    pairRule:"技能実習の後継 ＝ 育成就労制度（2027年4月施行予定）",
+    explanation:"【育成就労[いくせいしゅうろう]制度[せいど] ＝ 技能実習[ぎのうじっしゅう]の後継[こうけい]】2024年[ねん]の法改正[ほうかいせい]により創設[そうせつ]された新[あたら]しい在留[ざいりゅう]資格[しかく]制度[せいど]で、2027年[ねん]4月[がつ]1日[にち]から技能実習[ぎのうじっしゅう]制度[せいど]に代[か]わって施行[しこう]される予定[よてい]です。" },
+  { id:"soc-611", unit:6, unitTitle:"外国人[がいこくじん]介護[かいご]人材[じんざい]受入[うけい]れ制度[せいど]", termRuby:"育成就労[いくせいしゅうろう]の目的[もくてき]転換[てんかん]", en:"Shift in Policy Purpose",
+    enTip:"Unlike technical intern training's stated goal of \"international contribution,\" Ikusei Shuro openly aims at developing and securing workers.",
+    question:"育成就労[いくせいしゅうろう]制度[せいど]が、従来[じゅうらい]の技能実習[ぎのうじっしゅう]制度[せいど]と比[くら]べて掲[かか]げている目的[もくてき]の変化[へんか]として正[ただ]しいものはどれですか？",
+    choices:[{text:"「国際[こくさい]貢献[こうけん]」から「人材[じんざい]育成[いくせい]・人材[じんざい]確保[かくほ]」への転換[てんかん]",correct:true},{text:"「人材[じんざい]確保[かくほ]」から「国際[こくさい]貢献[こうけん]」への転換[てんかん]",correct:false},{text:"目的[もくてき]に変化[へんか]はない",correct:false}],
+    pairRule:"育成就労の目的 ＝ 人材育成・人材確保（国際貢献の建前から転換）",
+    explanation:"【目的[もくてき]の転換[てんかん] ＝ 人材[じんざい]育成[いくせい]・確保[かくほ]へ】従来[じゅうらい]の技能実習[ぎのうじっしゅう]制度[せいど]が『国際[こくさい]貢献[こうけん]』を建前[たてまえ]としてきたのに対[たい]し、育成就労[いくせいしゅうろう]制度[せいど]は『人材[じんざい]育成[いくせい]』と『人材[じんざい]確保[かくほ]』を明確[めいかく]な目的[もくてき]として掲[かか]げています。" }
+];
+
+const ALL_UNITS = [
+  { num:1, title:"介護保険の基本", questions: questionsUnit1 },
+  { num:2, title:"お金と認定の流れ", questions: questionsUnit2 },
+  { num:3, title:"権利擁護・成年後見・虐待防止", questions: questionsUnit3 },
+  { num:4, title:"地域と関係機関", questions: questionsUnit4 },
+  { num:5, title:"介護過程の基本", questions: questionsUnit5 },
+  { num:6, title:"外国人介護人材受入れ制度", questions: questionsUnit6 }
+];
+
+/* ========================= AUDIO (437Hz brand tone) ========================= */
+let audioCtx = null;
+function getCtx(){ if(!audioCtx){ try{ audioCtx = new (window.AudioContext||window.webkitAudioContext)(); }catch(e){} } return audioCtx; }
+function playTone(freq, duration, type){
+  const ctx = getCtx();
+  if(!ctx) return;
+  if(ctx.state === "suspended"){ ctx.resume(); }
+  const osc = ctx.createOscillator();
+  const gain = ctx.createGain();
+  osc.type = type || "sine";
+  osc.frequency.value = freq;
+  gain.gain.setValueAtTime(0.0001, ctx.currentTime);
+  gain.gain.exponentialRampToValueAtTime(0.14, ctx.currentTime + 0.02);
+  gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration);
+  osc.connect(gain); gain.connect(ctx.destination);
+  osc.start();
+  osc.stop(ctx.currentTime + duration + 0.02);
+}
+function playCorrect(){
+  playTone(437, 0.22, "sine");
+  setTimeout(()=>playTone(437*1.5, 0.30, "sine"), 100);
+}
+function playIncorrect(){
+  playTone(437*0.66, 0.30, "triangle");
+  setTimeout(()=>playTone(437*0.5, 0.30, "triangle"), 110);
+}
+
+/* ========================= STATE ========================= */
+const STORAGE_KEY = "shakai-shikumi-katsujido-progress-v1";
+const RUBY_KEY = "shakai-shikumi-katsujido-ruby-v1";
+let progress = loadProgress();
+let currentUnit = null;
+let currentIndex = 0;
+let currentScore = 0;
+let answered = false;
+let currentChoices = []; // shuffled choices for the active question
+
+function loadProgress(){
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(raw) return JSON.parse(raw);
+  }catch(e){}
+  return {};
+}
+function saveProgress(){
+  try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(progress)); }catch(e){}
+}
+
+/* ========================= RUBY TOGGLE ========================= */
+function loadRubyPref(){
+  try{
+    const v = localStorage.getItem(RUBY_KEY);
+    return v === null ? true : v === "1";
+  }catch(e){ return true; }
+}
+function applyRubyPref(show){
+  document.body.classList.toggle('no-ruby', !show);
+  const toggle = document.getElementById('ruby-toggle');
+  toggle.classList.toggle('on', show);
+}
+function toggleRuby(){
+  const showing = !document.body.classList.contains('no-ruby');
+  const next = !showing;
+  applyRubyPref(next);
+  try{ localStorage.setItem(RUBY_KEY, next ? "1" : "0"); }catch(e){}
+}
+
+/* ========================= RENDER: HOME ========================= */
+function renderHome(){
+  const list = document.getElementById('unit-list');
+  list.innerHTML = '';
+  ALL_UNITS.forEach(u => {
+    const best = progress[u.num] && progress[u.num].best;
+    const total = u.questions.length;
+    const card = document.createElement('div');
+    card.className = 'unit-card';
+    card.onclick = () => startUnit(u.num);
+    card.innerHTML = `
+      <div class="unit-num">${u.num}</div>
+      <div class="unit-info">
+        <div class="unit-name">${u.title}</div>
+        <div class="unit-meta">全${total}問</div>
+        ${ best !== undefined ? `<div class="unit-progress">前回 ${best} / ${total} 正解</div>` : '' }
+      </div>
+      <div class="unit-arrow">›</div>
+    `;
+    list.appendChild(card);
+  });
+}
+
+/* ========================= NAV ========================= */
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+function goHome(){
+  renderHome();
+  showScreen('screen-home');
+}
+
+/* ========================= UTIL ========================= */
+function shuffle(arr){
+  const a = arr.slice();
+  for(let i = a.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+/* convert 漢字[かな] shorthand into <ruby> tags */
+function furiganaToRuby(str){
+  return str.replace(/([一-龠々〆ヵヶA-Za-z0-9]+)\[([ぁ-んァ-ヶー]+)\]/g, '<ruby>$1<rt>$2</rt></ruby>');
+}
+
+/* ========================= QUIZ FLOW ========================= */
+function startUnit(unitNum){
+  currentUnit = ALL_UNITS.find(u => u.num === unitNum);
+  currentIndex = 0;
+  currentScore = 0;
+  showScreen('screen-quiz');
+  renderQuestion();
+}
+
+function renderQuestion(){
+  answered = false;
+  const q = currentUnit.questions[currentIndex];
+  const total = currentUnit.questions.length;
+  currentChoices = shuffle(q.choices);
+
+  document.getElementById('quiz-progress-label').textContent = `${currentIndex+1} / ${total}`;
+  document.getElementById('progress-fill').style.width = `${(currentIndex/total)*100}%`;
+  document.getElementById('unit-eyebrow').textContent = `UNIT ${currentUnit.num} ・ ${q.unitTitle.replace(/\[[^\]]*\]/g,'')}`;
+  document.getElementById('term-jp').innerHTML = q.termRuby;
+  document.getElementById('term-en').textContent = q.en;
+  document.getElementById('question-text').innerHTML = furiganaToRuby(q.question);
+
+  const choicesEl = document.getElementById('choices');
+  choicesEl.innerHTML = '';
+  currentChoices.forEach((c, idx) => {
+    const btn = document.createElement('button');
+    btn.className = 'choice-btn';
+    btn.innerHTML = furiganaToRuby(c.text);
+    btn.onclick = () => selectChoice(idx);
+    choicesEl.appendChild(btn);
+  });
+
+  document.getElementById('result-area').innerHTML = '';
+}
+
+function selectChoice(idx){
+  if(answered) return;
+  answered = true;
+  const q = currentUnit.questions[currentIndex];
+  const buttons = document.querySelectorAll('.choice-btn');
+  const isCorrect = currentChoices[idx].correct;
+
+  buttons.forEach((btn, i) => {
+    btn.classList.add('disabled');
+    if(currentChoices[i].correct){ btn.classList.add('correct'); }
+    else if(i === idx){ btn.classList.add('incorrect'); }
+    else { btn.classList.add('muted'); }
+  });
+
+  if(isCorrect){ currentScore++; playCorrect(); } else { playIncorrect(); }
+
+  const resultArea = document.getElementById('result-area');
+  resultArea.innerHTML = `
+    <div class="result-panel ${isCorrect ? 'good':'bad'}">
+      <div class="result-verdict ${isCorrect ? 'good':'bad'}">${isCorrect ? '○ 正解です' : '× 残念、不正解です'}</div>
+      <div class="result-rule">${furiganaToRuby(q.pairRule)}</div>
+      <div class="result-explanation">${furiganaToRuby(q.explanation)}</div>
+      <div class="en-tip"><span class="en-tip-label">ONE POINT (ENGLISH)</span>${q.enTip}</div>
+    </div>
+    <button class="next-btn" id="next-btn">${currentIndex+1 < currentUnit.questions.length ? '次の問題へ' : '結果を見る'}</button>
+  `;
+  document.getElementById('next-btn').onclick = nextQuestion;
+}
+
+function nextQuestion(){
+  currentIndex++;
+  if(currentIndex >= currentUnit.questions.length){
+    finishUnit();
+  } else {
+    renderQuestion();
+  }
+}
+
+function finishUnit(){
+  document.getElementById('progress-fill').style.width = '100%';
+  const total = currentUnit.questions.length;
+  const prevBest = (progress[currentUnit.num] && progress[currentUnit.num].best) || 0;
+  progress[currentUnit.num] = { best: Math.max(prevBest, currentScore), last: currentScore, total };
+  saveProgress();
+
+  document.getElementById('complete-title').textContent = `UNIT ${currentUnit.num}「${currentUnit.title}」修了`;
+  document.getElementById('complete-score').innerHTML = `今回の正解数　<b>${currentScore}</b> / ${total}`;
+  document.getElementById('retry-btn').onclick = () => startUnit(currentUnit.num);
+  showScreen('screen-complete');
+}
+
+/* ========================= INIT ========================= */
+applyRubyPref(loadRubyPref());
+renderHome();
+</script>
+</body>
+</html>
