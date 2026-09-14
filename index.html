@@ -675,141 +675,329 @@ const questionsUnit4 = [
 ];
 
 const questionsUnit5 = [
-  { id:"soc-501", unit:5, unitTitle:"介護過程[かいごかてい]の基本[きほん]", termRuby:"<ruby>介護過程<rt>かいごかてい</rt></ruby>の4段階[だんかい]", en:"Four-Step Process",
-    enTip:"The four steps always run in this order: assessment, care planning, implementation, and evaluation.",
-    question:"介護過程[かいごかてい]を構成[こうせい]する４つの段階[だんかい]を、正[ただ]しい順番[じゅんばん]に並[なら]べたものはどれですか？",
-    choices:[{text:"アセスメント→計画[けいかく]の立案[りつあん]→実施[じっし]→評価[ひょうか]",correct:true},{text:"実施[じっし]→評価[ひょうか]→計画[けいかく]の立案[りつあん]→アセスメント",correct:false},{text:"計画[けいかく]の立案[りつあん]→アセスメント→評価[ひょうか]→実施[じっし]",correct:false}],
-    pairRule:"介護過程の4段階 ＝ アセスメント→計画立案→実施→評価",
-    explanation:"【介護過程[かいごかてい]の4段階[だんかい] ＝ アセスメント→計画[けいかく]立案[りつあん]→実施[じっし]→評価[ひょうか]】介護過程[かいごかてい]は、まず情報[じょうほう]を集[あつ]めて分析[ぶんせき]する『アセスメント』から始[はじ]まり、計画[けいかく]を立[た]て、実行[じっこう]し、最後[さいご]に見直[みなお]す『評価[ひょうか]』までを繰[く]り返[かえ]すサイクルです。" },
-  { id:"soc-502", unit:5, unitTitle:"介護過程[かいごかてい]の基本[きほん]", termRuby:"<ruby>アセスメント<rt>あせすめんと</rt></ruby>", en:"Assessment",
-    enTip:"Assessment means gathering information about the person's life and health, then analyzing it to identify their care needs.",
-    question:"介護過程[かいごかてい]における【アセスメント】とは何[なに]を行[おこな]う段階[だんかい]ですか？",
-    choices:[{text:"利用者[りようしゃ]の心身[しんしん]の状況[じょうきょう]や生活歴[せいかつれき]などの情報[じょうほう]を収集[しゅうしゅう]し、分析[ぶんせき]して生活課題[せいかつかだい]を明[あき]らかにする段階[だんかい]",correct:true},{text:"一度[いちど]立[た]てた計画[けいかく]をそのまま実行[じっこう]するだけの段階[だんかい]",correct:false},{text:"サービス提供[ていきょう]の対価[たいか]を計算[けいさん]し請求書[せいきゅうしょ]を作成[さくせい]する段階[だんかい]",correct:false}],
-    pairRule:"アセスメント ＝ 情報収集＋分析（生活課題の明確化）",
-    explanation:"【アセスメント ＝ 情報[じょうほう]収集[しゅうしゅう]と分析[ぶんせき]】利用者[りようしゃ]本人[ほんにん]や家族[かぞく]から心身[しんしん]の状態[じょうたい]・生活歴[せいかつれき]・希望[きぼう]などの情報[じょうほう]を集[あつ]め、そこから解決[かいけつ]すべき生活課題[せいかつかだい]（ニーズ）を明[あき]らかにする段階[だんかい]です。" },
-  { id:"soc-503", unit:5, unitTitle:"介護過程[かいごかてい]の基本[きほん]", termRuby:"<ruby>生活課題<rt>せいかつかだい</rt></ruby>", en:"Life Issue / Need",
-    enTip:"A \"life issue\" is a problem identified through assessment that care must help resolve.",
-    question:"アセスメントの結果[けっか]、利用者[りようしゃ]が「本人[ほんにん]の力[ちから]だけでは解決[かいけつ]できず、介護[かいご]によって解決[かいけつ]すべき」と明[あき]らかになった問題[もんだい]を何[なん]と呼[よ]びますか？",
-    choices:[{text:"生活課題[せいかつかだい]（ニーズ）",correct:true},{text:"個人[こじん]情報[じょうほう]",correct:false},{text:"業務[ぎょうむ]日誌[にっし]",correct:false}],
-    pairRule:"分析結果として明らかになった解決すべき問題 ＝ 生活課題（ニーズ）",
-    explanation:"【生活課題[せいかつかだい] ＝ 解決[かいけつ]すべきニーズ】アセスメントで集[あつ]めた情報[じょうほう]を分析[ぶんせき]し、利用者[りようしゃ]が望[のぞ]む生活[せいかつ]を送[おく]るために介護[かいご]で解決[かいけつ]すべきことが『生活課題[せいかつかだい]』です。" },
-  { id:"soc-504", unit:5, unitTitle:"介護過程[かいごかてい]の基本[きほん]", termRuby:"<ruby>長期目標<rt>ちょうきもくひょう</rt></ruby>", en:"Long-term Goal",
-    enTip:"The long-term goal describes the ultimate life the person hopes to achieve once their issue is resolved.",
-    question:"【長期目標[ちょうきもくひょう]】の説明[せつめい]として正[ただ]しいものはどれですか？",
-    choices:[{text:"生活課題[せいかつかだい]が解決[かいけつ]された、利用者[りようしゃ]の望[のぞ]む生活[せいかつ]の最終的[さいしゅうてき]な姿[すがた]を示[しめ]す目標[もくひょう]",correct:true},{text:"明日[あす]1日[にち]だけ達成[たっせい]すればよい目標[もくひょう]",correct:false},{text:"家族[かぞく]だけが達成[たっせい]を目指[めざ]す目標[もくひょう]",correct:false}],
-    pairRule:"長期目標 ＝ 最終的に目指す生活の姿",
-    explanation:"【長期目標[ちょうきもくひょう] ＝ 最終的[さいしゅうてき]なゴール】生活課題[せいかつかだい]が解決[かいけつ]され、利用者[りようしゃ]が望[のぞ]む生活[せいかつ]を実現[じつげん]した状態[じょうたい]を示[しめ]す、時間[じかん]をかけて目指[めざ]す目標[もくひょう]です。" },
-  { id:"soc-505", unit:5, unitTitle:"介護過程[かいごかてい]の基本[きほん]", termRuby:"<ruby>短期目標<rt>たんきもくひょう</rt></ruby>", en:"Short-term Goal",
-    enTip:"Short-term goals are the concrete, step-by-step targets that build toward the long-term goal.",
-    question:"【短期目標[たんきもくひょう]】の役割[やくわり]として正[ただ]しいものはどれですか？",
-    choices:[{text:"長期目標[ちょうきもくひょう]を達成[たっせい]するための、具体的[ぐたいてき]で段階的[だんかいてき]な小[ちい]さな目標[もくひょう]",correct:true},{text:"長期目標[ちょうきもくひょう]とはまったく関係[かんけい]のない目標[もくひょう]",correct:false},{text:"利用者[りようしゃ]本人[ほんにん]には知[し]らせない目標[もくひょう]",correct:false}],
-    pairRule:"短期目標 ＝ 長期目標達成に向けた段階的な目標",
-    explanation:"【短期目標[たんきもくひょう] ＝ 長期目標[ちょうきもくひょう]への一歩[いっぽ]】長期目標[ちょうきもくひょう]を達成[たっせい]するために、より具体的[ぐたいてき]で短[みじか]い期間[きかん]で確認[かくにん]できる小[ちい]さな目標[もくひょう]を段階的[だんかいてき]に設定[せってい]します。" },
-  { id:"soc-506", unit:5, unitTitle:"介護過程[かいごかてい]の基本[きほん]", termRuby:"<ruby>個別援助計画<rt>こべつえんじょけいかく</rt></ruby>", en:"Individual Care Plan",
-    enTip:"The individual care plan writes down the goals, specific support actions, methods, and points to watch for.",
-    question:"介護過程[かいごかてい]における【個別援助計画[こべつえんじょけいかく]】に記載[きさい]する内容[ないよう]として適切[てきせつ]なものはどれですか？",
-    choices:[{text:"目標[もくひょう]、具体的[ぐたいてき]な支援[しえん]内容[ないよう]、実施[じっし]方法[ほうほう]、留意点[りゅういてん]など",correct:true},{text:"施設[しせつ]の年間[ねんかん]収支[しゅうし]決算[けっさん]のみ",correct:false},{text:"利用者[りようしゃ]の家族[かぞく]の勤務先[きんむさき]の給与[きゅうよ]額[がく]のみ",correct:false}],
-    pairRule:"個別援助計画 ＝ 目標・支援内容・方法・留意点を明文化したもの",
-    explanation:"【個別援助計画[こべつえんじょけいかく] ＝ 具体的[ぐたいてき]な行動計画[こうどうけいかく]】長期[ちょうき]・短期[たんき]目標[もくひょう]に加[くわ]え、誰[だれ]が・いつ・何[なに]を・どのように支援[しえん]するかという具体的[ぐたいてき]な内容[ないよう]と、留意点[りゅういてん]を明文化[めいぶんか]した計画書[けいかくしょ]です。" },
-  { id:"soc-507", unit:5, unitTitle:"介護過程[かいごかてい]の基本[きほん]", termRuby:"<ruby>実施<rt>じっし</rt></ruby>（モニタリング）", en:"Implementation",
-    enTip:"During implementation, staff carry out the plan while observing and recording the person's reactions and changes.",
-    question:"介護過程[かいごかてい]の【実施[じっし]】の段階[だんかい]で行[おこな]うべきこととして正[ただ]しいものはどれですか？",
-    choices:[{text:"計画[けいかく]に沿[そ]って支援[しえん]を行[おこな]い、利用者[りようしゃ]の反応[はんのう]や状態[じょうたい]の変化[へんか]を観察[かんさつ]・記録[きろく]する",correct:true},{text:"計画[けいかく]をいったん白紙[はくし]に戻[もど]し、その場[ば]の思[おも]いつきだけで対応[たいおう]する",correct:false},{text:"評価[ひょうか]が終[お]わるまで一切[いっさい]の記録[きろく]をとらない",correct:false}],
-    pairRule:"実施 ＝ 計画の遂行＋反応の観察・記録（モニタリング）",
-    explanation:"【実施[じっし] ＝ 計画[けいかく]の遂行[すいこう]とモニタリング】立[た]てた計画[けいかく]に沿[そ]って実際[じっさい]に支援[しえん]を行[おこな]いながら、利用者[りようしゃ]の反応[はんのう]や状態[じょうたい]の変化[へんか]を観察[かんさつ]し記録[きろく]することが欠[か]かせません。" },
-  { id:"soc-508", unit:5, unitTitle:"介護過程[かいごかてい]の基本[きほん]", termRuby:"<ruby>評価<rt>ひょうか</rt></ruby>", en:"Evaluation",
-    enTip:"Evaluation checks how far the goals were met and decides whether the plan should continue or change.",
-    question:"介護過程[かいごかてい]における【評価[ひょうか]】の段階[だんかい]で行[おこな]うことはどれですか？",
-    choices:[{text:"目標[もくひょう]がどの程度[ていど]達成[たっせい]できたかを確認[かくにん]し、計画[けいかく]の継続[けいぞく]や見直[みなお]しを検討[けんとう]する",correct:true},{text:"最初[さいしょ]のアセスメントの内容[ないよう]をすべて破棄[はき]する",correct:false},{text:"利用者[りようしゃ]に一切[いっさい]知[し]らせずに担当者[たんとうしゃ]だけで完結[かんけつ]させる",correct:false}],
-    pairRule:"評価 ＝ 目標達成度の確認と計画の見直し",
-    explanation:"【評価[ひょうか] ＝ 目標[もくひょう]達成度[たっせいど]の確認[かくにん]】設定[せってい]した目標[もくひょう]がどの程度[ていど]達成[たっせい]できたかを振[ふ]り返[かえ]り、計画[けいかく]をこのまま続[つづ]けるか、見直[みなお]すかを検討[けんとう]する段階[だんかい]です。" },
-  { id:"soc-509", unit:5, unitTitle:"介護過程[かいごかてい]の基本[きほん]", termRuby:"<ruby>ICF<rt>あいしーえふ</rt></ruby>（国際[こくさい]生活[せいかつ]機能[きのう]分類[ぶんるい]）", en:"ICF Framework",
-    enTip:"ICF looks at a person's whole life — body functions, activities, participation, and environment — not just a diagnosis.",
-    question:"介護過程[かいごかてい]のアセスメントで活用[かつよう]される【ICF】が示[しめ]す視点[してん]として正[ただ]しいものはどれですか？",
-    choices:[{text:"心身[しんしん]機能[きのう]・身体[しんたい]構造[こうぞう]、活動[かつどう]、参加[さんか]、環境[かんきょう]因子[いんし]など生活[せいかつ]全体[ぜんたい]を多面的[ためんてき]に捉[とら]える視点[してん]",correct:true},{text:"病名[びょうめい]だけを分類[ぶんるい]するための一覧表[いちらんひょう]",correct:false},{text:"利用[りよう]料金[りょうきん]だけを計算[けいさん]するための表[ひょう]",correct:false}],
-    pairRule:"ICF ＝ 心身機能・活動・参加・環境因子など生活全体をとらえる視点",
-    explanation:"【ICF ＝ 生活[せいかつ]全体[ぜんたい]をとらえる枠組[わくぐ]み】病気[びょうき]や障害[しょうがい]だけでなく、『できる活動[かつどう]』『社会[しゃかい]への参加[さんか]』『環境[かんきょう]因子[いんし]』なども含[ふく]めて、利用者[りようしゃ]の生活[せいかつ]全体[ぜんたい]を多面的[ためんてき]に理解[りかい]するための視点[してん]です。" },
-  { id:"soc-510", unit:5, unitTitle:"介護過程[かいごかてい]の基本[きほん]", termRuby:"<ruby>客観的情報<rt>きゃっかんてきじょうほう</rt></ruby>と<ruby>主観的情報<rt>しゅかんてきじょうほう</rt></ruby>", en:"Objective vs Subjective Info",
-    enTip:"What the person says they feel — like \"it hurts\" — counts as subjective information, distinct from measurable, observed facts.",
-    question:"アセスメントで集[あつ]める情報[じょうほう]のうち、利用者[りようしゃ]本人[ほんにん]の「痛[いた]い」「つらい」といった訴[うった]えはどちらに分類[ぶんるい]されますか？",
-    choices:[{text:"主観的[しゅかんてき]情報[じょうほう]",correct:true},{text:"客観的[きゃっかんてき]情報[じょうほう]",correct:false},{text:"統計[とうけい]情報[じょうほう]",correct:false}],
-    pairRule:"本人の訴え・感じ方 ＝ 主観的情報／数値や観察結果 ＝ 客観的情報",
-    explanation:"【主観的情報[しゅかんてきじょうほう] ＝ 本人[ほんにん]の訴[うった]え】「痛[いた]い」「つらい」など本人[ほんにん]の感[かん]じ方[かた]は主観的[しゅかんてき]情報[じょうほう]です。血圧[けつあつ]の数値[すうち]や観察[かんさつ]でわかる事実[じじつ]は客観的[きゃっかんてき]情報[じょうほう]として区別[くべつ]します。" },
-  { id:"soc-511", unit:5, unitTitle:"介護過程[かいごかてい]の基本[きほん]", termRuby:"<ruby>チームアプローチ<rt>ちーむあぷろーち</rt></ruby>", en:"Team Approach",
-    enTip:"A team approach means sharing information across professions and supporting the person with one consistent policy.",
-    question:"介護過程[かいごかてい]を展開[てんかい]するうえで重要[じゅうよう]な【チームアプローチ】の考[かんが]え方[かた]として正[ただ]しいものはどれですか？",
-    choices:[{text:"介護職[かいごしょく]だけでなく多職種[たしょくしゅ]で情報[じょうほう]を共有[きょうゆう]し、統一[とういつ]した方針[ほうしん]で支援[しえん]すること",correct:true},{text:"担当[たんとう]の介護職員[かいごしょくいん]だけの判断[はんだん]ですべてを進[すす]めること",correct:false},{text:"他職種[たしょくしゅ]とは情報[じょうほう]を共有[きょうゆう]せず、それぞれ別々[べつべつ]に対応[たいおう]すること",correct:false}],
-    pairRule:"チームアプローチ ＝ 多職種で情報共有し統一した方針で支援",
-    explanation:"【チームアプローチ ＝ 多職種[たしょくしゅ]連携[れんけい]】介護職[かいごしょく]・看護師[かんごし]・ケアマネジャーなど多職種[たしょくしゅ]が情報[じょうほう]を共有[きょうゆう]し、統一[とういつ]した方針[ほうしん]のもとで一貫[いっかん]した支援[しえん]を行[おこな]うことが介護過程[かいごかてい]を支[ささ]えます。" }
+  {
+    id: "soc-501",
+    unit: 5,
+    unitTitle: "介護過程[かいごかてい]の基本[きほん]",
+    termRuby: "<ruby>介護過程<rt>かいごかてい</rt></ruby>",
+    en: "Care Process",
+    enTip: "The care process aims to help the person live the life they want and support their independence — not just enforce facility routines.",
+    question: "介護過程[かいごかてい]の目的[もくてき]として最[もっと]も適切[てきせつ]なものはどれですか？",
+    choices: [
+      { text: "利用[りよう]者[しゃ]の望[のぞ]む生活[せいかつ]の実現[じつげん]と自立支援[じりつしえん]", correct: true },
+      { text: "施設[しせつ]のルールに従[したが]わせる画一的[かくいつてき]な管理[かんり]", correct: false },
+      { text: "介護職[かいごしょく]の業務[ぎょうむ]時間[じかん]を短縮[たんしゅく]すること", correct: false }
+    ],
+    pairRule: "介護過程の目的 ＝ 本人の望む暮らしと自立支援（個別ケア）",
+    explanation: "【介護過程[かいごかてい] ＝ 自立支援[じりつしえん]の実践[じっせん]】介護過程[かいごかてい]は、単[たん]にお世話[せわ]の順序[じゅんじょ]を決[き]めるのではなく、利用[りよう]者[しゃ]一人[ひとり]ひとりの生活[せいかつ]の質[しつ]を高[たか]め自立[じりつ]を支[ささ]えるための思考[しこう]プロセスです。"
+  },
+  {
+    id: "soc-502",
+    unit: 5,
+    unitTitle: "介護過程[かいごかてい]の基本[きほん]",
+    termRuby: "<ruby>展開<rt>てんかい</rt></ruby>の4ステップ",
+    en: "Four Steps",
+    enTip: "The four steps run in order: assessment, care planning, implementation, then evaluation.",
+    question: "介護過程[かいごかてい]の4つのステップを【正[ただ]しい順番[じゅんばん]】に並[なら]べたものはどれですか？",
+    choices: [
+      { text: "アセスメント ➔ 計画立案[けいかくりつあん] ➔ 実施[じっし] ➔ 評価[ひょうか]", correct: true },
+      { text: "計画立案[けいかくりつあん] ➔ 実施[じっし] ➔ アセスメント ➔ 評価[ひょうか]", correct: false },
+      { text: "実施[じっし] ➔ アセスメント ➔ 計画立案[けいかくりつあん] ➔ 評価[ひょうか]", correct: false }
+    ],
+    pairRule: "展開順序 ＝ アセスメント➔計画➔実施➔評価",
+    explanation: "【介護過程[かいごかてい]の流れ ＝ アセスメントから評価[ひょうか]へ】情報収集[じょうほうしゅうしゅう]・課題分析[かだいぶんせき]（アセスメント）を行[おこな]い、計画[けいかく]を立[た]て、介護[かいご]を実施[じっし]し、最後[さいご]に効果[こうか]を評価[ひょうか]して見直[みなお]します。"
+  },
+  {
+    id: "soc-503",
+    unit: 5,
+    unitTitle: "介護過程[かいごかてい]の基本[きほん]",
+    termRuby: "<ruby>客観的情報<rt>きゃっかんてきじょうほう</rt></ruby>",
+    en: "Objective Data",
+    enTip: "Objective information means measurable facts, like vital signs or observed actions — not personal feelings.",
+    question: "アセスメントにおける情報[じょうほう]のうち、【客観的[きゃっかんてき]情報[じょうほう]】にあたるものはどれですか？",
+    choices: [
+      { text: "体温[たいおん] 37.5℃、血圧[けつあつ] 130/80、歩行[ほこう]自立[じりつ]", correct: true },
+      { text: "利用[りよう]者[しゃ]が言[い]った「足[あし]が痛[いた]くて歩[ある]きたくない」という言葉[ことば]", correct: false },
+      { text: "介護職[かいごしょく]が「今日[きょう]は元気[げんき]がなさそうだ」と感[かん]じたこと", correct: false }
+    ],
+    pairRule: "客観的情報 ＝ 測定値・事実・観察された客観データ",
+    explanation: "【客観的[きゃっかんてき]情報[じょうほう] ＝ 測定値[そくていち]や事実[じじつ]】誰[だれ]が見[み]ても変[か]わらない数値[すうち]や検査[けんさ]結果[けっか]、動作[どうさ]の事実[じじつ]を指[さ]します。本人[ほんにん]の気持[きも]ちや主観[しゅかん]は「主観的[しゅかんてき]情報[じょうほう]」です。"
+  },
+  {
+    id: "soc-504",
+    unit: 5,
+    unitTitle: "介護過程[かいごかてい]の基本[きほん]",
+    termRuby: "<ruby>主観的情報<rt>しゅかんてきじょうほう</rt></ruby>",
+    en: "Subjective Data",
+    enTip: "Subjective information is what the person or their family actually says — their wishes, feelings, or complaints.",
+    question: "アセスメントにおける情報[じょうほう]のうち、【主観的[しゅかんてき]情報[じょうほう]】にあたるものはどれですか？",
+    choices: [
+      { text: "「家[いえ]に帰[かえ]って畑仕事[はたけしごと]がしたい」という本人[ほんにん]の訴[うった]え", correct: true },
+      { text: "カルテに記載[きさい]された脳梗塞[のうこうそく]の既往歴[きおうれき]", correct: false },
+      { text: "食事[しょくじ]を半分[はんぶん]残[のこ]したという観察[かんさつ]記録[きろく]", correct: false }
+    ],
+    pairRule: "主観的情報 ＝ 本人や家族の言葉・思い・訴え",
+    explanation: "【主観的[しゅかんてき]情報[じょうほう] ＝ 本人[ほんにん]の気持[きも]ち・発言[はつげん]】本[ほん]人[にん]や家族[かぞく]が話[はな]した希望[きぼう]、つらさ、訴[うった]えなどの内面的[ないめんてき]な感情[かんじょう]・意向[いこう]のことです。"
+  },
+  {
+    id: "soc-505",
+    unit: 5,
+    unitTitle: "介護過程[かいごかてい]の基本[きほん]",
+    termRuby: "<ruby>生活課題<rt>せいかつかだい</rt></ruby>（ニーズ）",
+    en: "Needs Assessment",
+    enTip: "A life issue (need) is the gap between the life the person wants and their current situation.",
+    question: "アセスメントにおいて、利用[りよう]者[しゃ]が望[のぞ]む生活[せいかつ]と現状[げんじょう]のギャップから導[みちび]き出[だ]すものを何[なん]と呼[よ]びますか？",
+    choices: [
+      { text: "生活[せいかつ]課題[かだい]（ニーズ）", correct: true },
+      { text: "施設[しせつ]の年間[ねんかん]予算[よさん]", correct: false },
+      { text: "介護報酬[かいごほうしゅう]の請求[せいきゅう]コード", correct: false }
+    ],
+    pairRule: "生活課題（ニーズ） ＝ 望む生活と現状のギャップ解決",
+    explanation: "【生活課題[せいかつかだい] ＝ 解決[かいけつ]すべき課題[かだい]】「トイレに行[い]きたいが足[あし]の筋力[きんりょく]が落[お]ちて転[ころ]んでしまう」といった、本[ほん]人[にん]が望[のぞ]む暮[く]らしを阻[はば]む問題点[もんだいてん]を明確[めいかく]にすることです。"
+  },
+  {
+    id: "soc-506",
+    unit: 5,
+    unitTitle: "介護過程[かいごかてい]の基本[きほん]",
+    termRuby: "<ruby>目標設定<rt>もくひょうせってい</rt></ruby>",
+    en: "Goal Setting",
+    enTip: "Care goals should be written with the user as the subject — describing what they can do, not what staff will do.",
+    question: "介護計画[かいごけいかく]における【目標[もくひょう]の設定[せってい]】として最[もっと]も適切[てきせつ]な表現[ひょうげん]はどれですか？",
+    choices: [
+      { text: "「手すりを使って一人[ひとり]でトイレまで歩[ある]くことができる」（利用[りよう]者[しゃ]が主語[しゅご]）", correct: true },
+      { text: "「転倒[てんとう]させないように見守[みまも]りを行[おこな]う」（介護職[かいごしょく]が主語[しゅご]）", correct: false },
+      { text: "「部屋[へや]から出[で]ずに安静[あんせい]に過[す]ごす」（活動[かつどう]の制限[せいげん]）", correct: false }
+    ],
+    pairRule: "目標の主語 ＝ 利用者本人（〜ができる、〜して過ごす）",
+    explanation: "【目標[もくひょう] ＝ 主語[しゅご]は利用[りよう]者[しゃ]】介護計画[かいごけいかく]の目標[もくひょう]は介護職[かいごしょく]の業務[ぎょうむ]目標[もくひょう]ではありません。「利用[りよう]者[しゃ]本人[ほんにん]がどうなれるか」を主語[しゅご]にして設定[せってい]します。"
+  },
+  {
+    id: "soc-507",
+    unit: 5,
+    unitTitle: "介護過程[かいごかてい]の基本[きほん]",
+    termRuby: "<ruby>短期目標<rt>たんきもくひょう</rt></ruby>と<ruby>長期目標<rt>ちょうきもくひょう</rt></ruby>",
+    en: "Short & Long Goals",
+    enTip: "Short-term goals are stepping stones toward the long-term goal, not separate or unrelated targets.",
+    question: "介護計画[かいごけいかく]の「長期目標[ちょうきもくひょう]」と「短期目標[たんきもくひょう]」の関係[かんけい]として正[ただ]しいものはどれですか？",
+    choices: [
+      { text: "短期目標[たんきもくひょう]は、長期目標[ちょうきもくひょう]を達成[たっせい]するためのステップ（通過点[つうかてん]）である", correct: true },
+      { text: "短期目標[たんきもくひょう]と長期目標[ちょうきもくひょう]は全[まった]く無関係[むかんけい]な別[べつ]の目標[もくひょう]にする", correct: false },
+      { text: "短期目標[たんきもくひょう]の期間[きかん]は通常[つうじょう]3年[ねん]以上[いじょう]で設定[せってい]する", correct: false }
+    ],
+    pairRule: "短期目標 ＝ 長期目標へのステップ（階段）",
+    explanation: "【目標[もくひょう]の関係[かんけい] ＝ 短期[たんき]の積[つ]み重[かさ]ねが長期[ちょうき]】最終的[さいしゅうてき]な到達点[とうたつてん]である長期目標[ちょうきもくひょう]（例[れい]: 自宅[じたく]復帰[ふっき]）に向[む]けて、手前[てまえ]のステップとして短期目標[たんきもくひょう]（例[れい]: 杖[つえ]歩行[ほこう]の獲得[かくとく]）を設定[せってい]します。"
+  },
+  {
+    id: "soc-508",
+    unit: 5,
+    unitTitle: "介護過程[かいごかてい]の基本[きほん]",
+    termRuby: "<ruby>計画<rt>けいかく</rt></ruby>の<ruby>同意<rt>どうい</rt></ruby>",
+    en: "Informed Consent",
+    enTip: "A finished care plan must be explained to the person and family, and a signed copy given to them.",
+    question: "介護計画[かいごけいかく]を作成[さくせい]した際[さい]の対応[たいおう]として、法律上[ほうりつじょう]・倫理上[りんりじょう]必須[ひっす]となる手続きはどれですか？",
+    choices: [
+      { text: "利用[りよう]者[しゃ]や家族[かぞく]に説明[せつめい]して文書[ぶんしょ]で同意[どうい]を得[え]て交付[こうふ]する", correct: true },
+      { text: "施設長[しせつちょう]の許可[きょか]だけでよいので利用[りよう]者[しゃ]には見[み]せない", correct: false },
+      { text: "市町村[しちょうそん]の窓口[まどぐち]に持参[じさん]して担当者[たんとうしゃ]の印鑑[いんかん]をもらう", correct: false }
+    ],
+    pairRule: "計画確定 ＝ 説明・同意（サイン）・交付",
+    explanation: "【計画[けいかく]の同意[どうい] ＝ 説明[せつめい]とサイン】立案[りつあん]した介護計画[かいごけいかく]は、本人[ほんにん]や家族[かぞく]にやさしく説明[せつめい]し、納得[なっとく]・同意[どうい]（署名[しょめい]）をもらった上[うえ]で写[うつ]しを渡[わた]します。"
+  },
+  {
+    id: "soc-509",
+    unit: 5,
+    unitTitle: "介護過程[かいごかてい]の基本[きほん]",
+    termRuby: "<ruby>モニタリング<rt>もにたりんぐ</rt></ruby>",
+    en: "Monitoring",
+    enTip: "Monitoring means watching and recording whether the plan is progressing as expected while it's underway.",
+    question: "介護計画[かいごけいかく]を実施[じっし]している最中[さいちゅう]に、計画通[けいかくとお]りに進[すす]んでいるか観察[かんさつ]・確認[かくにん]する作業[さぎょう]を何[なん]と呼[よ]びますか？",
+    choices: [
+      { text: "モニタリング（経過[けいか]観察[かんさつ]）", correct: true },
+      { text: "インテーク（初回[しょかい]面接[めんせつ]）", correct: false },
+      { text: "ターミネーション（終結[しゅうけつ]）", correct: false }
+    ],
+    pairRule: "モニタリング ＝ 計画の進捗と変化の継続観察",
+    explanation: "【モニタリング ＝ 途中[とちゅう]の経過[けいか]確認[かくにん]】計画[けいかく]したサービスが効果[こうか]を上[あ]げているか、体調[たいちょう]や生活[せいかつ]に変化[へんか]がないかを定期的に見守[みまも]り記録[きろく]する作業[さぎょう]です。"
+  },
+  {
+    id: "soc-510",
+    unit: 5,
+    unitTitle: "介護過程[かいごかてい]の基本[きほん]",
+    termRuby: "<ruby>評価<rt>ひょうか</rt></ruby>と<ruby>見直<rt>みなお</rt></ruby>し",
+    en: "Evaluation",
+    enTip: "If a goal isn't met, the response is to reassess and revise the plan — not to blame the person or stop services.",
+    question: "介護計画[かいごけいかく]の「評価[ひょうか]」を行[おこな]った結果[けっか]、目標[もくひょう]が達成[たっせい]できなかった場合[ばあい]の対応[たいおう]はどれですか？",
+    choices: [
+      { text: "原因[げんいん]をアセスメントし直[なお]して計画[けいかく]を修正[しゅうせい]・見直[みなお]す", correct: true },
+      { text: "目標[もくひょう]が達成[たっせい]できないのは本人[ほんにん]のやる気[き]不足[ぶそく]として終了[しゅうりょう]する", correct: false },
+      { text: "介護保険[かいごほけん]サービス自体[じたい]を直[ただ]ちに利用[りよう]停止[ていし]にする", correct: false }
+    ],
+    pairRule: "評価の次 ＝ アセスメントへの再接続（PDCAサイクル）",
+    explanation: "【評価[ひょうか] ＝ 次[つぎ]の見直[みなお]しへ循環[じゅんかん]】目標[もくひょう]が達成[たっせい]できなかった時[とき]は、どこに無理[むり]があったのか再[ふたた]び情報[じょうほう]を集[あつ]め直[なお]し（再アセスメント）、新[あたら]しい計画[けいかく]へと更新[こうしん]します。"
+  }
 ];
 
 const questionsUnit6 = [
-  { id:"soc-601", unit:6, unitTitle:"外国人[がいこくじん]介護[かいご]人材[じんざい]受入[うけい]れ制度[せいど]", termRuby:"4つの受入[うけい]れルート", en:"Four Entry Routes",
-    enTip:"The four main routes are EPA, Technical Intern Training, Specified Skilled Worker, and the student/graduate route — a tourist visa is not one of them.",
-    question:"日本[にほん]で外国人[がいこくじん]が介護職[かいごしょく]として働[はたら]くための、代表的[だいひょうてき]な4つの受入[うけい]れルートに【含[ふく]まれない】ものはどれですか？",
-    choices:[{text:"観光[かんこう]ビザによる短期[たんき]滞在[たいざい]",correct:true},{text:"EPA（経済連携協定[けいざいれんけいきょうてい]）",correct:false},{text:"技能実習[ぎのうじっしゅう]",correct:false}],
-    pairRule:"4つの代表的ルート ＝ EPA・技能実習・特定技能・留学（介護福祉士養成施設等）",
-    explanation:"【受入[うけい]れルート ＝ EPA・技能実習[ぎのうじっしゅう]・特定技能[とくていぎのう]・留学[りゅうがく]】外国人[がいこくじん]が介護職[かいごしょく]として就労[しゅうろう]する代表的[だいひょうてき]なルートは、EPA・技能実習[ぎのうじっしゅう]・特定技能[とくていぎのう]・介護福祉士[かいごふくしし]養成[ようせい]施設[しせつ]卒業[そつぎょう]（留学[りゅうがく]）の4つです。観光[かんこう]ビザでは就労[しゅうろう]できません。" },
-  { id:"soc-602", unit:6, unitTitle:"外国人[がいこくじん]介護[かいご]人材[じんざい]受入[うけい]れ制度[せいど]", termRuby:"<ruby>EPA<rt>いーぴーえー</rt></ruby>（経済連携協定[けいざいれんけいきょうてい]）", en:"EPA Framework",
-    enTip:"The EPA framework for care worker candidates currently covers three countries: Indonesia, the Philippines, and Vietnam.",
-    question:"EPAに基[もと]づく介護福祉士[かいごふくしし]候補者[こうほしゃ]の受入[うけい]れ対象[たいしょう]となっている3か国[こく]はどれですか？",
-    choices:[{text:"インドネシア・フィリピン・ベトナム",correct:true},{text:"中国[ちゅうごく]・韓国[かんこく]・タイ",correct:false},{text:"ネパール・ミャンマー・カンボジア",correct:false}],
-    pairRule:"EPA対象国 ＝ インドネシア・フィリピン・ベトナムの3か国",
-    explanation:"【EPA対象国[たいしょうこく] ＝ インドネシア・フィリピン・ベトナム】経済連携協定[けいざいれんけいきょうてい]（EPA）に基[もと]づく介護福祉士[かいごふくしし]候補者[こうほしゃ]の受入[うけい]れは、インドネシア・フィリピン・ベトナムの3か国[こく]との協定[きょうてい]に基[もと]づいて行[おこな]われています。" },
-  { id:"soc-603", unit:6, unitTitle:"外国人[がいこくじん]介護[かいご]人材[じんざい]受入[うけい]れ制度[せいど]", termRuby:"EPA候補者[こうほしゃ]の在留[ざいりゅう]期間[きかん]", en:"EPA Candidate Stay",
-    enTip:"EPA candidates can work and train in Japan for four years in principle while preparing for the national exam.",
-    question:"EPA介護福祉士[かいごふくしし]候補者[こうほしゃ]が来日後[らいにちご]、国家試験[こっかしけん]合格[ごうかく]を目指[めざ]して就労[しゅうろう]・研修[けんしゅう]できる在留[ざいりゅう]期間[きかん]の原則[げんそく]はどれですか？",
-    choices:[{text:"原則[げんそく] 4年間[ねんかん]",correct:true},{text:"原則[げんそく] 10年間[ねんかん]",correct:false},{text:"期限[きげん]なし（無期限[むきげん]）",correct:false}],
-    pairRule:"EPA候補者の滞在 ＝ 原則4年間（国家試験合格で無期限就労へ）",
-    explanation:"【EPA候補者[こうほしゃ]の在留[ざいりゅう] ＝ 原則[げんそく]4年間[ねんかん]】候補者[こうほしゃ]は日本[にほん]の介護[かいご]施設[しせつ]で働[はたら]きながら、原則[げんそく]4年間[ねんかん]の間[あいだ]に介護福祉士[かいごふくしし]国家試験[こっかしけん]の合格[ごうかく]を目指[めざ]して研修[けんしゅう]します。" },
-  { id:"soc-604", unit:6, unitTitle:"外国人[がいこくじん]介護[かいご]人材[じんざい]受入[うけい]れ制度[せいど]", termRuby:"EPA介護福祉士[かいごふくしし]", en:"EPA Certified Worker",
-    enTip:"Once a candidate passes the national exam, they can keep renewing their status and work in Japan without a limit.",
-    question:"EPA介護福祉士[かいごふくしし]候補者[こうほしゃ]が在留[ざいりゅう]期間中[きかんちゅう]に介護福祉士[かいごふくしし]国家試験[こっかしけん]に合格[ごうかく]した場合[ばあい]、その後[ご]の扱[あつか]いとして正[ただ]しいものはどれですか？",
-    choices:[{text:"在留[ざいりゅう]期間[きかん]の更新[こうしん]制限[せいげん]がなくなり、継続[けいぞく]して就労[しゅうろう]できる",correct:true},{text:"資格[しかく]取得[しゅとく]と同時[どうじ]に帰国[きこく]しなければならない",correct:false},{text:"合格[ごうかく]しても在留[ざいりゅう]資格[しかく]は一切[いっさい]変[か]わらない",correct:false}],
-    pairRule:"国家試験合格 ＝ 在留期間の更新制限なしで就労継続可",
-    explanation:"【合格後[ごうかくご] ＝ 更新[こうしん]制限[せいげん]なしで継続[けいぞく]就労[しゅうろう]】国家試験[こっかしけん]に合格[ごうかく]すると『EPA介護福祉士[かいごふくしし]』として、在留[ざいりゅう]期間[きかん]の更新[こうしん]回数[かいすう]に制限[せいげん]なく日本[にほん]で働[はたら]き続[つづ]けることができます。" },
-  { id:"soc-605", unit:6, unitTitle:"外国人[がいこくじん]介護[かいご]人材[じんざい]受入[うけい]れ制度[せいど]", termRuby:"技能実習[ぎのうじっしゅう]制度[せいど]の目的[もくてき]", en:"Technical Intern Training Purpose",
-    enTip:"On paper, technical intern training exists to transfer skills to developing countries — not simply to fill Japan's labor shortage.",
-    question:"【技能実習[ぎのうじっしゅう]制度[せいど]】が制度上[せいどじょう]掲[かか]げてきた本来[ほんらい]の目的[もくてき]はどれですか？",
-    choices:[{text:"開発途上国[かいはつとじょうこく]への技能[ぎのう]移転[いてん]による国際[こくさい]貢献[こうけん]",correct:true},{text:"日本[にほん]国内[こくない]の人手不足[ひとでぶそく]を補[おぎな]う労働力[ろうどうりょく]の確保[かくほ]",correct:false},{text:"永住権[えいじゅうけん]の付与[ふよ]",correct:false}],
-    pairRule:"技能実習制度の建前 ＝ 国際貢献（技能移転）。労働力確保が目的の特定技能とは異なる",
-    explanation:"【技能実習[ぎのうじっしゅう]の建前[たてまえ] ＝ 国際[こくさい]貢献[こうけん]】技能実習[ぎのうじっしゅう]制度[せいど]は、開発途上国[かいはつとじょうこく]の人[ひと]に日本[にほん]の技能[ぎのう]を伝[つた]えて母国[ぼこく]の発展[はってん]に役立[やくだ]ててもらう『国際[こくさい]貢献[こうけん]』が本来[ほんらい]の目的[もくてき]とされてきました。" },
-  { id:"soc-606", unit:6, unitTitle:"外国人[がいこくじん]介護[かいご]人材[じんざい]受入[うけい]れ制度[せいど]", termRuby:"特定技能[とくていぎのう]1号[ごう]（介護[かいご]）", en:"Specified Skilled Worker (1)",
-    enTip:"Specified Skilled Worker (1) requires a reasonable level of knowledge or experience, confirmed through a skills test.",
-    question:"【特定技能[とくていぎのう]1号[ごう]】の在留[ざいりゅう]資格[しかく]で外国人[がいこくじん]が介護[かいご]分野[ぶんや]に従事[じゅうじ]するために必要[ひつよう]な水準[すいじゅん]はどれですか？",
-    choices:[{text:"相当[そうとう]程度[ていど]の知識[ちしき]または経験[けいけん]を要[よう]する技能[ぎのう]（技能[ぎのう]評価[ひょうか]試験[しけん]等[とう]で確認[かくにん]）",correct:true},{text:"熟練[じゅくれん]した技能[ぎのう]（各[かく]分野[ぶんや]の実技[じつぎ]試験[しけん]で確認[かくにん]）",correct:false},{text:"技能[ぎのう]は一切[いっさい]問[と]われない",correct:false}],
-    pairRule:"特定技能1号 ＝ 相当程度の知識・経験（技能評価試験＋日本語試験等）",
-    explanation:"【特定技能[とくていぎのう]1号[ごう] ＝ 相当[そうとう]程度[ていど]の知識[ちしき]・経験[けいけん]】介護[かいご]分野[ぶんや]の『介護[かいご]技能[ぎのう]評価[ひょうか]試験[しけん]』と日本語[にほんご]試験[しけん]などで一定[いってい]の水準[すいじゅん]が確認[かくにん]された人[ひと]が対象[たいしょう]です。" },
-  { id:"soc-607", unit:6, unitTitle:"外国人[がいこくじん]介護[かいご]人材[じんざい]受入[うけい]れ制度[せいど]", termRuby:"特定技能[とくていぎのう]2号[ごう]と介護[かいご]", en:"Specified Skilled Worker (2) Exclusion",
-    enTip:"Care work isn't part of Specified Skilled Worker (2) because a separate, more advanced \"Kaigo\" visa status already exists for qualified care workers.",
-    question:"介護[かいご]分野[ぶんや]が【特定技能[とくていぎのう]2号[ごう]】の対象[たいしょう]になっていない理由[りゆう]として正[ただ]しいものはどれですか？",
-    choices:[{text:"すでに専門的[せんもんてき]・技術的[ぎじゅつてき]分野[ぶんや]の在留[ざいりゅう]資格[しかく]「介護[かいご]」が別[べつ]に存在[そんざい]するため",correct:true},{text:"介護[かいご]分野[ぶんや]の人手不足[ひとでぶそく]が解消[かいしょう]されたため",correct:false},{text:"介護福祉士[かいごふくしし]国家試験[こっかしけん]が廃止[はいし]されたため",correct:false}],
-    pairRule:"介護は特定技能2号の対象外 ＝ 在留資格「介護」が既にあるため",
-    explanation:"【特定技能[とくていぎのう]2号[ごう]対象外[たいしょうがい]の理由[りゆう]】介護[かいご]分野[ぶんや]には、介護福祉士[かいごふくしし]資格[しかく]取得者[しゅとくしゃ]向[む]けの、より上位[じょうい]の在留[ざいりゅう]資格[しかく]「介護[かいご]」がすでに存在[そんざい]するため、特定技能[とくていぎのう]2号[ごう]の対象[たいしょう]分野[ぶんや]には含[ふく]まれていません。" },
-  { id:"soc-608", unit:6, unitTitle:"外国人[がいこくじん]介護[かいご]人材[じんざい]受入[うけい]れ制度[せいど]", termRuby:"在留[ざいりゅう]資格[しかく]「介護[かいご]」", en:"\"Kaigo\" Visa Status",
-    enTip:"The dedicated \"Kaigo\" visa status is granted to people who become licensed care workers, for example through a training school.",
-    question:"専門的[せんもんてき]・技術的[ぎじゅつてき]分野[ぶんや]の在留[ざいりゅう]資格[しかく]【介護[かいご]】を取得[しゅとく]する主[おも]なルートとして正[ただ]しいものはどれですか？",
-    choices:[{text:"介護福祉士[かいごふくしし]養成[ようせい]施設[しせつ]を卒業[そつぎょう]するなどして介護福祉士[かいごふくしし]国家[こっか]資格[しかく]を取得[しゅとく]する",correct:true},{text:"母国[ぼこく]で3日間[かかん]の講習[こうしゅう]を受[う]ける",correct:false},{text:"日本語[にほんご]検定[けんてい]に合格[ごうかく]するだけでよい",correct:false}],
-    pairRule:"在留資格「介護」 ＝ 介護福祉士資格の取得が前提",
-    explanation:"【在留[ざいりゅう]資格[しかく]「介護[かいご]」 ＝ 介護福祉士[かいごふくしし]資格[しかく]が前提[ぜんてい]】介護福祉士[かいごふくしし]養成[ようせい]施設[しせつ]の卒業[そつぎょう]や実務[じつむ]経験[けいけん]ルートなどを経[へ]て介護福祉士[かいごふくしし]国家[こっか]資格[しかく]を取得[しゅとく]した人[ひと]に与[あた]えられる在留[ざいりゅう]資格[しかく]です。" },
-  { id:"soc-609", unit:6, unitTitle:"外国人[がいこくじん]介護[かいご]人材[じんざい]受入[うけい]れ制度[せいど]", termRuby:"留学生[りゅうがくせい]ルート", en:"Student Route",
-    enTip:"International students who graduate from a care-worker training school and pass the national exam can then work under the \"Kaigo\" visa status.",
-    question:"外国人[がいこくじん]が日本[にほん]の【介護福祉士[かいごふくしし]養成[ようせい]施設[しせつ]】に留学生[りゅうがくせい]として入学[にゅうがく]し卒業[そつぎょう]した場合[ばあい]の扱[あつか]いとして、現在[げんざい]の制度[せいど]で正[ただ]しいものはどれですか？",
-    choices:[{text:"介護福祉士[かいごふくしし]国家試験[こっかしけん]に合格[ごうかく]すれば、在留[ざいりゅう]資格[しかく]「介護[かいご]」で就労[しゅうろう]できる",correct:true},{text:"卒業[そつぎょう]しただけで自動的[じどうてき]に永住権[えいじゅうけん]が付与[ふよ]される",correct:false},{text:"卒業後[そつぎょうご]は必[かなら]ず母国[ぼこく]に帰国[きこく]しなければならない",correct:false}],
-    pairRule:"留学ルート ＝ 養成施設卒業→国家試験合格→在留資格「介護」で就労",
-    explanation:"【留学[りゅうがく]ルート ＝ 養成[ようせい]施設[しせつ]卒業[そつぎょう]から就労[しゅうろう]へ】介護福祉士[かいごふくしし]養成[ようせい]施設[しせつ]を卒業[そつぎょう]し介護福祉士[かいごふくしし]国家試験[こっかしけん]に合格[ごうかく]すると、在留[ざいりゅう]資格[しかく]を「介護[かいご]」に変更[へんこう]して日本[にほん]で就労[しゅうろう]を続[つづ]けられます。" },
-  { id:"soc-610", unit:6, unitTitle:"外国人[がいこくじん]介護[かいご]人材[じんざい]受入[うけい]れ制度[せいど]", termRuby:"育成就労[いくせいしゅうろう]制度[せいど]", en:"Employment for Skill Development System",
-    enTip:"A new system called \"Ikusei Shuro\" (Employment for Skill Development) is set to replace technical intern training from April 2027.",
-    question:"2027年[ねん]4月[がつ]に施行[しこう]が予定[よてい]されている、技能実習[ぎのうじっしゅう]制度[せいど]に代[か]わる新[あたら]しい制度[せいど]はどれですか？",
-    choices:[{text:"育成就労[いくせいしゅうろう]制度[せいど]",correct:true},{text:"特定[とくてい]活動[かつどう]制度[せいど]",correct:false},{text:"高度[こうど]専門職[せんもんしょく]制度[せいど]",correct:false}],
-    pairRule:"技能実習の後継 ＝ 育成就労制度（2027年4月施行予定）",
-    explanation:"【育成就労[いくせいしゅうろう]制度[せいど] ＝ 技能実習[ぎのうじっしゅう]の後継[こうけい]】2024年[ねん]の法改正[ほうかいせい]により創設[そうせつ]された新[あたら]しい在留[ざいりゅう]資格[しかく]制度[せいど]で、2027年[ねん]4月[がつ]1日[にち]から技能実習[ぎのうじっしゅう]制度[せいど]に代[か]わって施行[しこう]される予定[よてい]です。" },
-  { id:"soc-611", unit:6, unitTitle:"外国人[がいこくじん]介護[かいご]人材[じんざい]受入[うけい]れ制度[せいど]", termRuby:"育成就労[いくせいしゅうろう]の目的[もくてき]転換[てんかん]", en:"Shift in Policy Purpose",
-    enTip:"Unlike technical intern training's stated goal of \"international contribution,\" Ikusei Shuro openly aims at developing and securing workers.",
-    question:"育成就労[いくせいしゅうろう]制度[せいど]が、従来[じゅうらい]の技能実習[ぎのうじっしゅう]制度[せいど]と比[くら]べて掲[かか]げている目的[もくてき]の変化[へんか]として正[ただ]しいものはどれですか？",
-    choices:[{text:"「国際[こくさい]貢献[こうけん]」から「人材[じんざい]育成[いくせい]・人材[じんざい]確保[かくほ]」への転換[てんかん]",correct:true},{text:"「人材[じんざい]確保[かくほ]」から「国際[こくさい]貢献[こうけん]」への転換[てんかん]",correct:false},{text:"目的[もくてき]に変化[へんか]はない",correct:false}],
-    pairRule:"育成就労の目的 ＝ 人材育成・人材確保（国際貢献の建前から転換）",
-    explanation:"【目的[もくてき]の転換[てんかん] ＝ 人材[じんざい]育成[いくせい]・確保[かくほ]へ】従来[じゅうらい]の技能実習[ぎのうじっしゅう]制度[せいど]が『国際[こくさい]貢献[こうけん]』を建前[たてまえ]としてきたのに対[たい]し、育成就労[いくせいしゅうろう]制度[せいど]は『人材[じんざい]育成[いくせい]』と『人材[じんざい]確保[かくほ]』を明確[めいかく]な目的[もくてき]として掲[かか]げています。" }
+  {
+    id: "soc-601",
+    unit: 6,
+    unitTitle: "外国人介護人材[がいこくじんかいごじんざい]受入制度[うけいれせいど]",
+    termRuby: "4つの<ruby>受入<rt>うけい</rt></ruby>れルート",
+    en: "Four Entry Routes",
+    enTip: "Care work in Japan is possible via EPA, the 'Kaigo' visa status, Technical Intern Training, or Specified Skilled Worker — never on a tourist visa.",
+    question: "日本[にほん]で外国人[がいこくじん]が介護職[かいごしょく]として働[はたら]くための、代表的[だいひょうてき]な4つの受入[うけい]れルートに【含[ふく]まれない】ものはどれですか？",
+    choices: [
+      { text: "短期滞在[たんきたいざい]（観光[かんこう]ビザ）", correct: true },
+      { text: "経済連携協定[けいざいれんけいきょうてい]（EPA）", correct: false },
+      { text: "在留資格[ざいりゅうしかく]「介護[かいご]」・特定技能[とくていぎのう]・技能実習[ぎのうじっしゅう]", correct: false }
+    ],
+    pairRule: "介護の外国人受入れ ＝ EPA・在留資格介護・技能実習・特定技能の4ルート",
+    explanation: "【受入[うけい]れ4ルート ＝ EPA・在留資格介護・技能実習・特定技能】介護現場[かいごげんば]で外国人[がいこくじん]を受[う]け入[い]れる制度[せいど]はこの4つです。観光[かんこう]などの『短期滞在[たんきたいざい]』で働くことは法律[ほうりつ]で禁止[きんし]されています。"
+  },
+  {
+    id: "soc-602",
+    unit: 6,
+    unitTitle: "外国人介護人材[がいこくじんかいごじんざい]受入制度[うけいれせいど]",
+    termRuby: "EPA（<ruby>経済連携協定<rt>けいざいれんけいきょうてい</rt></ruby>）",
+    en: "EPA Framework",
+    enTip: "The EPA framework for care candidates covers three countries: Indonesia, the Philippines, and Vietnam.",
+    question: "EPA（経済連携協定[けいざいれんけいきょうてい]）に基[づ]づく介護福祉士[かいごふくしし]候補者[こうほしゃ]の受入[うけい]れ対象[たいしょう]となっている【3か国[こく]】はどれですか？",
+    choices: [
+      { text: "インドネシア、フィリピン、ベトナム", correct: true },
+      { text: "アメリカ、イギリス、フランス", correct: false },
+      { text: "中国[ちゅうごく]、韓国[かんこく]、台湾[たいわん]", correct: false }
+    ],
+    pairRule: "EPA介護 ＝ インドネシア・フィリピン・ベトナムの3カ国",
+    explanation: "【EPA受入れ国 ＝ インドネシア・フィリピン・ベトナム】政府間[せいふかん]の協定[きょうてい]（EPA）により、国家資格[こっかしかく]取得[しゅとく]を目差[めざ]して来日[らいにち]するルートはこの3か国[こく]に限定[げんてい]されています。"
+  },
+  {
+    id: "soc-603",
+    unit: 6,
+    unitTitle: "外国人介護人材[がいこくじんかいごじんざい]受入制度[うけいれせいど]",
+    termRuby: "EPA<ruby>候補者<rt>こうほしゃ</rt></ruby>の<ruby>目的<rt>もくてき</rt></ruby>",
+    en: "EPA Purpose",
+    enTip: "EPA acceptance is framed as strengthening bilateral economic ties, not as a general fix for Japan's labor shortage.",
+    question: "EPA（経済連携協定[けいざいれんけいきょうてい]）ルートの主[おも]な政策的[せいさくてき]な位置[いち]づけ・目的[もくてき]はどれですか？",
+    choices: [
+      { text: "二国間[にこくかん]の経済連携[けいざいれんけい]の強化[きょうか]（労働力[ろうどうりょく]不足[ふそく]の穴埋[あなう]めではない）", correct: true },
+      { text: "単純[たんじゅん]な低賃金[ていちんぎん]労働力[ろうどうりょく]の確保[かくほ]", correct: false },
+      { text: "留学生[りゅうがくせい]の学費[がくひ]免除[めんじょ]プログラム", correct: false }
+    ],
+    pairRule: "EPAの趣旨 ＝ 経済連携強化（国家資格取得を目指す特例公務）",
+    explanation: "【EPA目的[もくてき] ＝ 二国間[にこくかん]の友好[ゆうこう]・連携[れんけい]】一般[いっぱん]の人手[ひとで]不足[ふそく]対策[たいさく]ではなく、国家間[こっかかん]の連携[れんけい]を深[ふか]める特例[とくれい]として受[う]け入[い]れが行[おこな]われています。"
+  },
+  {
+    id: "soc-604",
+    unit: 6,
+    unitTitle: "外国人介護人材[がいこくじんかいごじんざい]受入制度[うけいれせいど]",
+    termRuby: "<ruby>在留資格<rt>ざいりゅうしかく</rt></ruby>「<ruby>介護<rt>かいご</rt></ruby>」",
+    en: "Status: Care Worker",
+    enTip: "Getting the dedicated 'Kaigo' visa status requires holding Japan's national care worker (kaigo fukushishi) qualification.",
+    question: "在留資格[ざいりゅうしかく]「介護[かいご]」を取得[しゅとく]するための必須[ひっす]条件[じょうけん]はどれですか？",
+    choices: [
+      { text: "日本[にほん]の「介護福祉士[かいごふくしし]」国家資格[こっかしかく]を取得[しゅとく]すること", correct: true },
+      { text: "日本[にほん]の高校[こうこう]を卒業[そつぎょう]していること", correct: false },
+      { text: "普通[ふつう]自動車[じどうしゃ]免許[めんきょ]を取得[しゅとく]していること", correct: false }
+    ],
+    pairRule: "在留資格「介護」 ＝ 介護福祉士国家資格の保持者",
+    explanation: "【在留資格[ざいりゅうしかく]介護[かいご] ＝ 国家資格[こっかしかく]必須[ひっす]】養成施設[ようせいしせつ]の卒業[そつぎょう]や実務経験[じつむけいけん]ルートで、日本[にほん]の介護福祉士[かいごふくしし]国家試験[こっかしけん]に合格[ごうかく]した人[ひと]だけが得[え]られる専門職[せんもんしょく]ビザです。"
+  },
+  {
+    id: "soc-605",
+    unit: 6,
+    unitTitle: "外国人介護人材[がいこくじんかいごじんざい]受入制度[うけいれせいど]",
+    termRuby: "<ruby>在留期間<rt>ざいりゅうきかん</rt></ruby>の<ruby>更新<rt>こうしん</rt></ruby>",
+    en: "Visa Renewal",
+    enTip: "Holders of the 'Kaigo' visa status can renew it indefinitely, opening a path to long-term or permanent residence.",
+    question: "国家資格[こっかしかく]を持[も]つ在留資格[ざいりゅうしかく]「介護[かいご]」の人[ひと]の、在留期間[ざいりゅうきかん]の更新[こうしん]制限[せいげん]はどうなっていますか？",
+    choices: [
+      { text: "更新[こうしん]回数[かいすう]に上限[じょうげん]がなく、長期滞在[ちょうきたいざい]（永住[えいじゅう]など）が可能[かのう]", correct: true },
+      { text: "最長[さいちょう]3年[ねん]で必[かなら]ず帰国[きこく]しなければならない", correct: false },
+      { text: "最長[さいちょう]5年[ねん]で通算[つうさん]終了[しゅうりょう]となる", correct: false }
+    ],
+    pairRule: "在留資格「介護」の更新 ＝ 上限なし（永住への道あり）",
+    explanation: "【在留資格[ざいりゅうしかく]介護[かいご]の更新[こうしん] ＝ 回数制限[かいすうせいげん]なし】介護福祉士[かいごふくしし]の国家資格[こっかしかく]を有[ゆう]しているため、要件[ようけん]を満[み]たせば何度[なんど]でも在留資格[ざいりゅうしかく]を更新[こうしん]して日本[にほん]で働[はたら]き続[つづ]けられます。"
+  },
+  {
+    id: "soc-606",
+    unit: 6,
+    unitTitle: "外国人介護人材[がいこくじんかいごじんざい]受入制度[うけいれせいど]",
+    termRuby: "<ruby>技能実習制度<rt>ぎのうじっしゅうせいど</rt></ruby>",
+    en: "Technical Intern",
+    enTip: "Technical Intern Training's stated purpose is transferring skills back to the trainee's home country — an international contribution.",
+    question: "【技能実習[ぎのうじっしゅう]】制度[せいど]の本来[ほんらい]の目的[もくてき]・理念[りねん]として定[さだ]められているものはどれですか？",
+    choices: [
+      { text: "日本[にほん]で学[まな]んだ技術[ぎじゅつ]・技能[ぎのう]を母国[ぼこく]へ移転[いてん]する国際貢献[こくさいこうけん]", correct: true },
+      { text: "国内[こくない]の介護施設[かいごしせつ]の深刻[しんこく]な人手[ひとで]不足[ふそく]の解消[かいしょう]", correct: false },
+      { text: "将来[しょうらい]の日本[にほん]への永住者[えいじゅうしゃ]を増[ふ]やすこと", correct: false }
+    ],
+    pairRule: "技能実習の建前・理念 ＝ 国際貢献（母国への技術移転）",
+    explanation: "【技能実習[ぎのうじっしゅう] ＝ 技術[ぎじゅつ]を母国[ぼこく]に移転[いてん]する国際貢献[こくさいこうけん]】実態[じったい]は現場[げんば]の担[にな]い手[て]であっても、制度[せいど]の目的[もくてき]は「母国[ぼこく]の経済[けいざい]発展[はってん]を担[にな]う人[ひと]づくり（国際貢献[こくさいこうけん]）」と規定[きてい]されています。"
+  },
+  {
+    id: "soc-607",
+    unit: 6,
+    unitTitle: "外国人介護人材[がいこくじんかいごじんざい]受入制度[うけいれせいど]",
+    termRuby: "<ruby>特定技能<rt>とくていぎのう</rt></ruby>1<ruby>号<rt>ごう</rt></ruby>",
+    en: "Specified Skilled Worker",
+    enTip: "Specified Skilled Worker (1) in care work has a total stay cap of five years, aimed at addressing urgent labor shortages.",
+    question: "深刻[しんこく]な人手[ひとで]不足[ふそく]に対応[たいおう]するために創設[そうせつ]された【特定技能[とくていぎのう]1号[ごう]（介護[かいご]）】の通算[つうさん]在留[ざいりゅう]上限[じょうげん]年数[ねんすう]はどれですか？",
+    choices: [
+      { text: "通算[つうさん]で最長[さいちょう] 5年[ねん]", correct: true },
+      { text: "通算[つうさん]で最長[さいちょう] 1年[ねん]", correct: false },
+      { text: "期限[きげん]なし（無制限[むせいげん]）", correct: false }
+    ],
+    pairRule: "特定技能1号 ＝ 最長5年（即戦力の人手不足対策）",
+    explanation: "【特定技能[とくていぎのう]1号[ごう] ＝ 在留[ざいりゅう]上限[じょうげん]5年[ねん]】現場[げんば]の即戦力[そくせんりょく]として一定[いってい]の専門性[せんもんせい]を持[も]つ人材[じんざい]を受[う]け入[い]れる資格[しかく]で、在留期間[ざいりゅうきかん]は通算[つうさん]で5年[ねん]が上限[じょうげん]です。"
+  },
+  {
+    id: "soc-608",
+    unit: 6,
+    unitTitle: "外国人介護人材[がいこくじんかいごじんざい]受入制度[うけいれせいど]",
+    termRuby: "<ruby>特定技能評価試験<rt>とくていぎのうひょうかしけん</rt></ruby>",
+    en: "Skill Evaluation",
+    enTip: "Qualifying for Specified Skilled Worker (1) in care normally requires passing both a care skills test and a Japanese test.",
+    question: "【特定技能[とくていぎのう]1号[ごう]（介護[かいご]）】を取得[しゅとく]するために合格[ごうかく]が必要[ひつよう]な試験[しけん]はどれですか？",
+    choices: [
+      { text: "介護技能評価試験[かいごぎのうひょうかしけん] と 国際交流基金日本語基礎テスト[こくさいこうりゅうききんにほんごきそてすと]（またはJLPT N4以上[いじょう]）", correct: true },
+      { text: "医師国家試験[いしこっかしけん]", correct: false },
+      { text: "介護福祉士[かいごふくしし]国家試験[こっかしけん]（実技試験[じつぎしけん]のみ）", correct: false }
+    ],
+    pairRule: "特定技能1号の要件 ＝ 介護技能試験 ＋ 日本語N4水準（または技能実習修了）",
+    explanation: "【特定技能試験[とくていぎのうしけん] ＝ 介護技術[かいごぎじゅつ]と日本語[にほんご]の試験[しけん]】技能実習[ぎのうじっしゅう]2号[ごう]を良好[りょうこう]に修了[しゅうりょう]した人[ひと]は試験[しけん]免除[めんじょ]となりますが、直接[ちょくせつ]目指[めざ]す場合[ばあい]は技術[ぎじゅつ]試験[しけん]と日本語[にほんご]試験[しけん]の両方[りょうほう]に合格[ごうかく]します。"
+  },
+  {
+    id: "soc-609",
+    unit: 6,
+    unitTitle: "外国人介護人材[がいこくじんかいごじんざい]受入制度[うけいれせいど]",
+    termRuby: "<ruby>訪問介護<rt>ほうもんかいご</rt></ruby>への<ruby>従事<rt>じゅうじ</rt></ruby>",
+    en: "Home-visit Care",
+    enTip: "Foreign care workers can now do home-visit care once required training and a safe support system are in place.",
+    question: "在留資格[ざいりゅうしかく]「介護[かいご]」や特定技能[とくていぎのう]の人[ひと]が【訪問介護[ほうもんかいご]】に従事[じゅうじ]する際[さい]の条件[じょうけん]として正[ただ]しいものはどれですか？",
+    choices: [
+      { text: "所定[しょてい]の研修[けんしゅう]受講[じゅこう]や受入[うけい]れ事業所[じぎょうしょ]の安全[あんぜん]体制[たいせい]が整[ととの]えば可能[かのう]", correct: true },
+      { text: "いかなる場合[ばあい]でも訪問介護[ほうもんかいご]に従事[じゅうじ]することは絶対[ぜったい]に禁止[きんし]", correct: false },
+      { text: "日本語[にほんご]検定[けんてい]1級[きゅう]がないと一歩[いっぽ]も家[いえ]に入[はい]れない", correct: false }
+    ],
+    pairRule: "訪問介護への従事 ＝ 研修と安全体制を条件に解禁",
+    explanation: "【訪問介護[ほうもんかいご] ＝ 条件付[じょうけんつ]きで従事[じゅうじ]可能[かのう]】かつては施設[しせつ]限定[げんてい]でしたが、制度[せいど]改正[かいせい]により、同行[どうこう]支援[しえん]やハラスメント防止[ぼうし]策[さく]などの安全[あんぜん]要件[ようけん]を満[み]たした事業所[じぎょうしょ]で訪問[ほうもん]介護[かいご]に従事[じゅうじ]できるようになりました。"
+  },
+  {
+    id: "soc-610",
+    unit: 6,
+    unitTitle: "外国人介護人材[がいこくじんかいごじんざい]受入制度[うけいれせいど]",
+    termRuby: "<ruby>同等報酬<rt>どうとうほうしゅう</rt></ruby>の<ruby>原則<rt>げんそく</rt></ruby>",
+    en: "Equal Pay",
+    enTip: "By law, foreign care workers must be paid at least the same as Japanese workers doing equivalent work.",
+    question: "外国人[がいこくじん]介護職員[かいごしょくいん]に支払[しはら]う給与[きゅうよ]・報酬[ほうしゅう]について、法律[ほうりつ]が求[もと]めている原則[げんそく]はどれですか？",
+    choices: [
+      { text: "日本[にほん]人[じん]と同等[どうとう]以上[いじょう]の報酬[ほうしゅう]額[がく]を支払[しはら]うこと", correct: true },
+      { text: "外国人[がいこくじん]なので日本[にほん]人[じん]の半分[はんぶん]の給与[きゅうよ]でよい", correct: false },
+      { text: "母国[ぼこく]の物価[ぶっか]水準[すいじゅん]に合[あ]わせた低額[ていがく]給与[きゅうよ]とする", correct: false }
+    ],
+    pairRule: "外国人への報酬 ＝ 日本人と同等以上（差別的取扱いの禁止）",
+    explanation: "【同等報酬[どうとうほうしゅう] ＝ 日本[にほん]人[じん]と同[おな]じ給与[きゅうよ]】国籍[こくせき]を理由[りゆう]に不当[ふとう]に低[ひく]い賃金[ちんぎん]で働[はたら]かせることは法律[ほうりつ]で固[かた]く禁[きん]じられており、同等[どうとう]の仕事[しごと]をする日本[にほん]人[じん]と同額[どうがく]以上[いじょう]を支払[しはら]わなければなりません。"
+  }
 ];
 
 const ALL_UNITS = [
